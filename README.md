@@ -1,0 +1,2 @@
+# konnec_nas
+ 
