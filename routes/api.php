@@ -31,5 +31,5 @@ Route::prefix('v1')->group(function () {
     Route::post('users/forgot-password', 'V1\Auth\UserController@forgotPassword');
     Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
 
-    Route::get('package/test', [PackageController::class, 'test']);
+    Route::get('packages/test', [PackageController::class, 'test']);
 });

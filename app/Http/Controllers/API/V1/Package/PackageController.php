@@ -10,7 +10,7 @@ class PackageController extends Controller
 {
     public function test () {
         $result = Artisan::command('command:test', function (){});
-        dd($result);
-        return true;
+        // dd($result);
+        return $result;
     }
 }
