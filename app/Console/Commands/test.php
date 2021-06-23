@@ -46,6 +46,7 @@ class test extends Command
             throw new ProcessFailedException($process);
         }
         // echo $process->getOutput();
+        $this->line($process->getOutput());
         return $process->getOutput();
     }
 }
