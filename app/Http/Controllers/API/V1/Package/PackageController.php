@@ -11,6 +11,6 @@ class PackageController extends Controller
     public function test () {
         $result = Artisan::command('command:test', function (){});
         // dd($result);
-        return $result;
+        return true;
     }
 }
