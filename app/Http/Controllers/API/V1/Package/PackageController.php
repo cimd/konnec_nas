@@ -9,7 +9,7 @@ use Artisan;
 class PackageController extends Controller
 {
     public function test () {
-        $result = Artisan::command('command:test', function (){});
+        $result = Artisan::call('command:test');
         dd($result);
         return true;
     }
