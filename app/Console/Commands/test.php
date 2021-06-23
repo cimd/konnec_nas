@@ -45,7 +45,7 @@ class test extends Command
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-        echo $process->getOutput();
-        // return $process->getOutput();
+        // echo $process->getOutput();
+        return $process->getOutput();
     }
 }
