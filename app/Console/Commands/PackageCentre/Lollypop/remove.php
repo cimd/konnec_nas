@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class removeLollypop extends Command
+class remove extends Command
 {
     /**
      * The name and signature of the console command.
