@@ -32,5 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
 
     Route::get('packages/test', [PackageController::class, 'test']);
-    Route::post('packages/install', [PackageController::class, 'test']);
+    Route::post('packages/install', [PackageController::class, 'install']);
+    Route::post('packages/remove', [PackageController::class, 'remove']);
+
 });

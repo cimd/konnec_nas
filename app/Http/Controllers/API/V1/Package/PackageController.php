@@ -13,4 +13,14 @@ class PackageController extends Controller
         $result = Artisan::output(); 
         return $result;
     }
+
+    public function install (Request $request) {
+        Artisan::call('install:lollypop');
+        return true;
+    }
+
+    public function remove (Request $request) {
+        Artisan::call('remove:lollypop');
+        return true;
+    }
 }
