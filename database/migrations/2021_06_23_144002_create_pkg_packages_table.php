@@ -15,17 +15,17 @@ class CreatePkgPackagesTable extends Migration
     {
         Schema::create('pkg_packages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('icon');
             $table->string('description');
             $table->string('developer');
             $table->string('developer_link');
             $table->string('category');
-            $table->string('installed_version');
-            $table->string('installed_version_type');
+            $table->string('installed_version')->nullable();
+            $table->string('installed_version_type')->nullable();
             $table->string('newest_version');
             $table->string('newest_version_type');
-            $table->string('installation_status');
+            $table->string('installation_status')->nullable();
             $table->timestamps();
         });
     }

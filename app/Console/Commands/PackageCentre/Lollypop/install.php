@@ -39,7 +39,14 @@ class install extends Command
      */
     public function handle()
     {
-        $process = new Process(['apt', 'install', 'lollypop']);
+        $process = new Process(['sudo', 'apt', 'install', 'lollypop']);
         $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $result = $process->getOutput();
+        $this->line($result);
+        return $result;
     }
 }

@@ -39,7 +39,7 @@ class test extends Command
      */
     public function handle()
     {
-        $process = new Process(['ls']);
+        $process = new Process(['dir']);
         $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {

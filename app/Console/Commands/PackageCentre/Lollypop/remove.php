@@ -39,7 +39,14 @@ class remove extends Command
      */
     public function handle()
     {
-        $process = new Process(['apt', 'remove', 'lollypop']);
+        $process = new Process(['sudo', 'apt', 'remove', 'lollypop']);
         $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $result = $process->getOutput();
+        $this->line($result);
+        return $result;
     }
 }
