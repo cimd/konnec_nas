@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\PackageCentre\Lollypop;
+namespace App\Console\Commands\Packages\Lollypop;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -13,7 +13,7 @@ class install extends Command
      *
      * @var string
      */
-    protected $signature = 'install:lollypop';
+    protected $signature = 'lollypop:install';
 
     /**
      * The console command description.

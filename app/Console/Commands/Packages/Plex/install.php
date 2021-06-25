@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Package\Plex;
+namespace App\Console\Commands\Packages\Plex;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -14,7 +14,7 @@ class install extends Command
      *
      * @var string
      */
-    protected $signature = 'install:plex';
+    protected $signature = 'plex:install';
 
     /**
      * The console command description.

@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Console\Commands\Packages\Lollypop;
+namespace App\Console\Commands\Packages\Apache;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class remove extends Command
+class getEnvs extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'lollypop:remove';
+    protected $signature = 'apache:list-envs';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove Lollypop';
+    protected $description = 'APache get envs';
 
     /**
      * Create a new command instance.
@@ -39,14 +39,9 @@ class remove extends Command
      */
     public function handle()
     {
-        $process = new Process(['sudo', 'apt', 'remove', 'lollypop']);
-        $process->run();
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-        $result = $process->getOutput();
+        $path = '/var/apache2/sites-available';
+        $result = scandir($path);
         $this->line($result);
-        return $result;
+        return $result
     }
 }

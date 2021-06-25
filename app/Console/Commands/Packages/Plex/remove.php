@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Package\Plex;
+namespace App\Console\Commands\Packages\Plex;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -13,14 +13,14 @@ class remove extends Command
      *
      * @var string
      */
-    protected $signature = 'remove:plex';
+    protected $signature = 'apache:list-envs';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove Plex Media Server';
+    protected $description = 'List Apache virtual servers';
 
     /**
      * Create a new command instance.

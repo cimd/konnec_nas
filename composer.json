@@ -12,7 +12,8 @@
         "laravel/framework": "^8.40",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "orangehill/iseed": "^3.0"
+        "orangehill/iseed": "^3.0",
+        "pear/pear": "^1.10"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
