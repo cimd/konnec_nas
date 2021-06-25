@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\V1\Package\PackageCentreController;
 use App\Http\Controllers\API\V1\Package\ApacheController;
+use App\Http\Controllers\API\V1\Shell\ShellCommandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::prefix('v1')->group(function () {
             Route::get('get-file', [ApacheController::class, 'getFile']);
             Route::post('update-file', [ApacheController::class, 'updateFile']);
         });
+
     });
+    Route::post('shell/run', [ShellCommandController::class, 'run']);
+
 
 });

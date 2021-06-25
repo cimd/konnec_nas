@@ -4,7 +4,7 @@ namespace App\Console\Commands\Packages\Apache;
 
 use Illuminate\Console\Command;
 use App\Jobs\ApacheRestartJob;
-class restart extends Command
+class updateEnvs extends Command
 
 {
     /**
@@ -38,9 +38,9 @@ class restart extends Command
      */
     public function handle()
     {
-        $path = '/var/apache2/sites-available/';
+        // $path = '/var/apache2/sites-available/';
         // sudo a2enconf php8.0-fpm
-        $process = new Process(['sudo', 'a2enconf', $path . $this->argument('filename')]);
+        $process = new Process(['sudo', 'a2enconf', config('global.apache_virtual_envs_path') . $this->argument('filename')]);
         $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {

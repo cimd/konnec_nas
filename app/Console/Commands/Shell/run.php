@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Console\Commands\Packages\Apache;
+namespace App\Console\Commands\Shell;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class listEnvs extends Command
+class run extends Command
+
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'apache:list-envs';
+    protected $signature = 'run:command {params}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'APache list envs';
+    protected $description = 'Run custom command';
 
     /**
      * Create a new command instance.
@@ -39,10 +40,16 @@ class listEnvs extends Command
      */
     public function handle()
     {
-        // $path = '/var/apache2/sites-available';
-        // $path = 'C:\\Users\\Ingo\\OneDrive\\Desktop';
-        $result = scandir(config('global.apache_virtual_envs_path'));
-        // $result = explode(' ', $list);
+        // $this->argument('command');
+        $cmds = explode(" ", $this->argument('params'));
+
+        $process = new Process($cmds);
+        $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $result = $process->getOutput();
         $this->line($result);
         return $result;
     }

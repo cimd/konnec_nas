@@ -90,7 +90,23 @@ class PackageSeeder extends Seeder
                 'has_config' => false,
                 'can_remove' => true,
                 'installation_status' => null
-            ],     
+            ],
+            [
+                'name' => 'phpMyAdmin',
+                'icon' => 'phpMyAdmin',
+                'description' => 'phpMyAdmin',
+                'developer' => 'Gnome',
+                'developer_link' => 'https://wiki.gnome.org/Apps/Lollypop',
+                'category' => '["Media"]',
+                'installed_version' => null,
+                'installed_version_type' => 'stable',
+                'newest_version' => null,
+                'newest_version_type' => null,
+                'has_config' => false,
+                // 'config_route' => '/phpmyadmin',
+                'can_remove' => true,
+                'installation_status' => 'Installed'
+            ],    
             // [
             // 'name' => '',
             // 'icon' => '',
