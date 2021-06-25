@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\API\V1\Package\PackageController;
+use App\Http\Controllers\API\V1\Package\PackageCentreController;
+use App\Http\Controllers\API\V1\Package\ApacheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,17 @@ Route::prefix('v1')->group(function () {
     // Route::post('users/forgot-password', 'V1\Auth\UserController@forgotPassword');
     // Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
 
-    Route::post('packages/test', [PackageController::class, 'test']);
-    Route::post('packages/install', [PackageController::class, 'install']);
-    Route::post('packages/remove', [PackageController::class, 'remove']);
-    Route::apiResource('packages', PackageController::class);
+    Route::post('packages/test', [PackageCentreController::class, 'test']);
+    Route::post('packages/install', [PackageCentreController::class, 'install']);
+    Route::post('packages/remove', [PackageCentreController::class, 'remove']);
+    Route::apiResource('packages', PackageCentreController::class);
+
+    Route::prefix('package')->group(function () {
+        Route::prefix('apache')->group(function () {
+            Route::get('list-envs', [ApacheController::class, 'listEnvs']);
+            Route::get('get-file', [ApacheController::class, 'getFile']);
+            Route::post('update-file', [ApacheController::class, 'updateFile']);
+        });
+    });
 
 });

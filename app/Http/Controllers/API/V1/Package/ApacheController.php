@@ -6,48 +6,40 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Artisan;
 use App\Models\Package;
+use App\Jobs\ApacheRestartJob;
 
-class PackageController extends Controller
+class ApacheController extends Controller
 {
-    public function index (Request $request) {
-        $result = Package::with('dependency')->get();
-        return $result->toArray();
+    private $path;
+
+    public function __construct() {
+        // $this->path = '/var/apache2/sites-available';
+        $this->path = 'C:\\Users\\Ingo\\OneDrive\\Desktop\\';
     }
 
-    public function update (Request $request, $id) {
-        $result = Package::find($id);
-        $result->fill($request->all())->save();
-        return $result->toArray();
+    public function listEnvs (Request $request) {
+        // Artisan::call('apache:list-envs');
+        // $result = Artisan::output();
+
+        // $path = '/var/apache2/sites-available';
+        // $path = 
+        $result = scandir($this->path);
+
+        // $data = explode(' ', $result);
+        return [
+            'data' => $result
+        ];
     }
 
-    public function show ($id) {
-        $result = Package::with('dependency')->find($id);
-        return $result->toArray();
+    public function getFile (Request $request) {
+        $file = file_get_contents($this->path . $request->filename);
+        return $file;
     }
 
-    public function test () {
-        Artisan::call('command:test');
-        $result = Artisan::output(); 
-        return $result;
-    }
-
-    public function install (Request $request) {
-        switch($request->name) {
-            case 'Lollypop':
-                Artisan::call('install:lollypop');
-                break;
-        }
-        $result = Artisan::output();
-        return $result;
-    }
-
-    public function remove (Request $request) {
-        switch($request->name) {
-            case 'Lollypop':
-                Artisan::call('remove:lollypop');
-                break;
-        }
-        $result = Artisan::output();
-        return $result;
+    public function updateFile (Request $request) {
+        $file = file_put_contents($this->path . $request->filename, $request->data);
+        Artisan::call('apache:update-envs ' . $request->filename);
+        Artisan::call('apache:restart');
+        return $file;
     }
 }

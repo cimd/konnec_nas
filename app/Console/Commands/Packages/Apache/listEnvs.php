@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class getEnvs extends Command
+class listEnvs extends Command
 {
     /**
      * The name and signature of the console command.
@@ -20,7 +20,7 @@ class getEnvs extends Command
      *
      * @var string
      */
-    protected $description = 'APache get envs';
+    protected $description = 'APache list envs';
 
     /**
      * Create a new command instance.
@@ -39,9 +39,11 @@ class getEnvs extends Command
      */
     public function handle()
     {
-        $path = '/var/apache2/sites-available';
+        // $path = '/var/apache2/sites-available';
+        $path = 'C:\\Users\\Ingo\\OneDrive\\Desktop';
         $result = scandir($path);
+        // $result = explode(' ', $list);
         $this->line($result);
-        return $result
+        return $result;
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Artisan;
 use App\Models\Package;
 
-class PackageController extends Controller
+class PackageCentreController extends Controller
 {
     public function index (Request $request) {
         $result = Package::with('dependency')->get();
