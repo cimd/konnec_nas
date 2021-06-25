@@ -25,6 +25,6 @@ class RegisterCommandFinished
      */
     public function handle($event)
     {
-        dd($event);
+        // dd($event);
     }
 }

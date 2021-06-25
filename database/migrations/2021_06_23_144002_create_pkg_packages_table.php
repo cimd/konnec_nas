@@ -23,10 +23,16 @@ class CreatePkgPackagesTable extends Migration
             $table->string('category');
             $table->string('installed_version')->nullable();
             $table->string('installed_version_type')->nullable();
-            $table->string('newest_version');
-            $table->string('newest_version_type');
             $table->string('installation_status')->nullable();
+            $table->boolean('has_config');
+            $table->string('config_route')->nullable();
+            $table->boolean('can_remove');
+            $table->string('newest_version')->nullable();
+            $table->string('newest_version_type')->nullable();
+            $table->string('newest_version_url')->nullable();
+            $table->string('newest_version_filename')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

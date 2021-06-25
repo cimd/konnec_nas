@@ -10,7 +10,7 @@ use App\Models\Package;
 class PackageController extends Controller
 {
     public function index (Request $request) {
-        $result = Package::all();
+        $result = Package::with('dependency')->get();
         return $result->toArray();
     }
 
@@ -21,7 +21,7 @@ class PackageController extends Controller
     }
 
     public function show ($id) {
-        $result = Package::find($id);
+        $result = Package::with('dependency')->find($id);
         return $result->toArray();
     }
 
