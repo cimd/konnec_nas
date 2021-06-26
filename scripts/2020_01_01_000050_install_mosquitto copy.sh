@@ -2,4 +2,4 @@
 
 #Supervisor
 echo "Installing Mosquitto"
-sudo apt-get install mosquitto mosquitto-clients
+sudo apt-get install -y mosquitto mosquitto-clients
