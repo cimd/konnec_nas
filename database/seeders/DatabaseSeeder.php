@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            PackageSeeder::class
+            PkgPackagesTableSeeder::class
+            // PackageSeeder::class
         ]);
+        $this->call(PkgPackagesTableSeeder::class);
     }
 }

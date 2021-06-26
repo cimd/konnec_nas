@@ -40,7 +40,7 @@ class run extends Command
      */
     public function handle()
     {
-        // $this->argument('command');
+        // dd($this->argument('params'));
         $cmds = explode(" ", $this->argument('params'));
 
         $process = new Process($cmds);
