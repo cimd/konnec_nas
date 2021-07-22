@@ -3,7 +3,7 @@
 # sudo unzip nextcloud-21.0.1.zip -d /var/www/
 sudo snap install nextcloud
 # sudo nextcloud.manual-install admin admin
-sudo nextcloud.occ config:system:set trusted_domains 1 --value=nextcloud.konnec.nas
+# sudo nextcloud.occ config:system:set trusted_domains 1 --value=nextcloud.daquino.nas
 
 
 
