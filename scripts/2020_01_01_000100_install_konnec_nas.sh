@@ -3,7 +3,7 @@
 # Create Database
 echo "Creating Database"
 sudo mysql -u root -e "create database konnec_nas; \
-grant all privileges on konnec_nas.* to admin@localhost identified by 'admin'; \
+grant all privileges on konnec_nas.* to admin@localhost identified by 'cimD1980'; \
 flush privileges;"
 
 # Install Laravel
