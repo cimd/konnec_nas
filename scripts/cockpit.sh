@@ -1,0 +1,1 @@
+sudo apt install cockpit cockpit-machines -y
