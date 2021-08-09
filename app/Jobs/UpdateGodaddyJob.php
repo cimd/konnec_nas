@@ -9,16 +9,24 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+use Illuminate\Support\Facades\Http;
+
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class ApacheRestartJob implements ShouldQueue
+class UpdateGodaddyJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, SerializesModels;
 
-    private subdomains = [
+    private $subdomains = [
         'vm',
-        'nextcloud'
+        'nextcloud',
+        '@',
+        'api',
+        'hassio',
+        'mail.daquino.io',
+        'webmin',
+        'dashboard'
     ];
 
     /**
@@ -38,29 +46,39 @@ class ApacheRestartJob implements ShouldQueue
      */
     public function handle()
     {
-
+        $ip = $this->getExternalIpAddress();
+        foreach ($this->subdomains as $record) {
+            $this->updateDnsRecord($record, $ip);
+        }
     }
 
     private function getExternalIpAddress()
     {
-        // $externalContent = file_get_contents('http://checkip.dyndns.com/');
-        // preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
-        // $externalIp = $m[1];
-        // echo $externalIp;
-        $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
-        return $ip;
+        $response = Http::get('http://checkip.dyndns.com/');
+        preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $response, $m);
+        $externalIp = $m[1];
+        return $externalIp;
     }
 
-    private function updateDnsRecord($record, $ip)
+    private function updateDnsRecord($record, $ip, $port = 80)
     {
         $uri = 'https://api.godaddy.com';
-        $params = '/v1/domains/daquino.io/records/A/' . $record;
-        $url = $uri . $params;
-        $client = new GuzzleHttp\Client();
-        $res = $client=>put($url, [
-            'data' => '',
-            'ttl' => '600',
+        $query = '/v1/domains/daquino.io/records/A/' . $record;
+        $url = $uri . $query;
 
-        ])
+        $res = Http::withHeaders([
+            'Authorization' => 'sso-key dKYSYpT8xzja_HzxKHana9FhN8gYRfkL8Tv:HadBYZ1rmSavHUN9AWLAJa',
+            'Content-Type' => 'application/json',
+            ])->withBody('[{
+                "data": "' . $ip . '",
+                "port": ' . $port . ',
+                "priority": 10,
+                "protocol": "string",
+                "service": "string",
+                "ttl": 601,
+                "weight": 10
+            }]','application/json')
+            ->put($url);
+        return $res->status();
     }
 }
