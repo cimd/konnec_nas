@@ -1,1 +1,1 @@
-sudo apt install samba
+sudo apt install samba -y
