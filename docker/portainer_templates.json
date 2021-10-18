@@ -1,0 +1,1240 @@
+{
+    "version": "2",
+    "templates": [
+      {
+        "categories": ["Music"],
+        "description": "Airsonic is a free, web-based media streamer, providing ubiqutious access to your music. Use it to share your music with friends, or to listen to your own music while at work. You can stream to multiple players simultaneously, for instance to one player in your kitchen and another in your living room.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          },
+          {
+            "label": "CONTEXT_PATH",
+            "name": "CONTEXT_PATH",
+            "set": "airsonic"
+          },
+          {
+            "label": "JAVA_OPTS",
+            "name": "JAVA_OPTS",
+            "set": "-Xms256m -Xmx512m"
+          }
+        ],
+        "image": "linuxserver/airsonic:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/airsonic-logo.png",
+        "name": "airsonic",
+        "platform": "linux",
+        "ports": ["4040:4040/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Airsonic",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Music",
+            "container": "/music"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Airsonic/Playlists",
+            "container": "/playlists"
+          },
+          {
+            "bind": "/portainer/Podcasts",
+            "container": "/podcasts"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Airsonic/Media",
+            "container": "/media"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Config/Airsonic/",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Tools", "Authentication"],
+        "description": "An open-source authentication and authorization server providing 2-factor authentication and single sign-on (SSO) for your applications via a web portal.",
+        "env": [
+          {
+            "label": "TZ",
+            "name": "TZ"
+          }
+        ],
+        "image": "authelia/authelia:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/authelia.png",
+        "name": "authelia",
+        "note": "Requires a configuration.yml file in order to work. Documentation is available <a href='https://docs.authelia.com/deployment/deployment-ha'>here</a>.",
+        "platform": "linux",
+        "ports": ["9091:9091/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Authelia",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Authelia",
+            "container": "/etc/authelia/"
+          }
+        ]
+      },
+      {
+        "categories": ["Video", "Music"],
+        "description": "Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          },
+          {
+            "label": "TZ",
+            "name": "TZ"
+          }
+        ],
+        "image": "hotio/bazarr:release",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/bazarr.png",
+        "name": "Bazarr",
+        "platform": "linux",
+        "ports": ["6767:6767/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Bazarr",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Bazarr",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/TV",
+            "container": "/tv"
+          },
+          {
+            "bind": "/portainer/Movies",
+            "container": "/movies"
+          }
+        ]
+      },
+      {
+        "categories": ["Books", "Other"],
+        "description": "Booksonic is a server and an app for streaming your audiobooks to any pc or android phone. Most of the functionality is also availiable on other platforms that have apps for subsonic.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          },
+          {
+            "default": "booksonic",
+            "label": "CONTEXT_PATH",
+            "name": "CONTEXT_PATH"
+          }
+        ],
+        "image": "linuxserver/booksonic:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/booksonic.png",
+        "name": "booksonic",
+        "platform": "linux",
+        "ports": ["4040:4040/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Booksonic",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Books",
+            "container": "/books"
+          },
+          {
+            "bind": "/portainer/Files/Podcasts",
+            "container": "/podcast"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Config/Booksonic",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Tools", "Photo"],
+        "description": "Chevereto is a powerful and fast image hosting script that allows you to create your very own full featured image hosting website in just minutes. Please note that this offers only the free Chevereto version.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          },
+          {
+            "label": "CHEVERETO_DB_HOST",
+            "name": "CHEVERETO_DB_HOST",
+            "set": ""
+          },
+          {
+            "label": "CHEVERETO_DB_USERNAME",
+            "name": "CHEVERETO_DB_USERNAME",
+            "set": ""
+          },
+          {
+            "label": "CHEVERETO_DB_PASSWORD",
+            "name": "CHEVERETO_DB_PASSWORD",
+            "set": ""
+          },
+          {
+            "label": "CHEVERETO_DB_NAME",
+            "name": "CHEVERETO_DB_NAME",
+            "set": ""
+          },
+          {
+            "label": "CHEVERETO_DB_PREFIX",
+            "name": "CHEVERETO_DB_PREFIX",
+            "set": ""
+          }
+        ],
+        "image": "nmtan/chevereto:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/Chevereto.png",
+        "name": "Chevereto",
+        "platform": "linux",
+        "ports": ["80/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Chevereto",
+        "type": 1,
+        "volumes": [
+          {
+            "container": "/var/www/html/images"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "CouchPotato (CP) is an automatic NZB and torrent downloader. You can keep a \"movies I want\"-list and it will search for NZBs/torrents of these movies every X hours. Once a movie is found, it will send it to SABnzbd or download the torrent to a specified directory.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/couchpotato:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/couchpotato-icon.png",
+        "name": "couchpotato",
+        "platform": "linux",
+        "ports": ["5050:5050/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "CouchPotato",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Couchpotato",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "bind": "/portainer/Movies",
+            "container": "/movies"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Music"],
+        "description": "Deemix is a deezer downloader built from the ashes of Deezloader Remix.",
+        "image": "registry.gitlab.com/bockiii/deemix-docker",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/deemix.png",
+        "name": "deemix",
+        "note": "Deemix may take a few minutes to install. Be sure to check the logs for details. Refer to <a href='https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken'>this page</a> for userToken details.",
+        "platform": "linux",
+        "ports": ["6595:6595/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "DeeMix",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/DeeMix",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "Deluge is a lightweight, Free Software, cross-platform BitTorrent client providing: Full Encryption, WebUI, Plugin System, Much more...",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          },
+          {
+            "label": "UMASK_SET",
+            "name": "UMASK_SET",
+            "set": "000"
+          }
+        ],
+        "image": "linuxserver/deluge:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/deluge-icon.png",
+        "namme": "deluge",
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "title": "Deluge",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Deluge",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Backup", "Cloud", "Other", "Productivity", "Tools"],
+        "description": "Free backup software to store encrypted backups online, Duplicati works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon Cloud Drive and S3, Google Drive, box.com, Mega, hubiC and many others.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/duplicati:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/duplicati-icon.png",
+        "name": "duplicati",
+        "platform": "linux",
+        "ports": ["8200:8200/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Duplicati",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Duplicati",
+            "container": "/config"
+          },
+          {
+            "container": "/tmp"
+          },
+          {
+            "container": "/backups"
+          },
+          {
+            "container": "/source"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Tools"],
+        "description": "A clientless remote desktop gateway.",
+        "image": "oznu/guacamole:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/guacamole.png",
+        "name": "guacamole",
+        "note": "The default login will be guacadmin/guacadmin. It is common practice to add a new admin user and remove the default user for Guacamole.",
+        "platform": "linux",
+        "ports": ["8080:8080/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Guacamole",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Guacamole",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Music"],
+        "description": "Headphones is an automated music downloader for NZB and Torrent, written in Python. It supports SABnzbd, NZBget, Transmission, µTorrent and Blackhole.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/headphones:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/headphones-icon.png",
+        "name": "headphones",
+        "platform": "linux",
+        "ports": ["8181:8181/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Headphones",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Headphones",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/Downloads"
+          },
+          {
+            "bind": "/portainer/Music",
+            "container": "/music"
+          }
+        ]
+      },
+      {
+        "categories": ["Tools", "Web", "Other"],
+        "description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/heimdall:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/heimdall-icon.png",
+        "name": "heimdall",
+        "platform": "linux",
+        "ports": ["80/tcp", "443/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Heimdall",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Heimdall",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Tools"],
+        "description": "A dead simple static HOMepage for your servER to keep your s ervices on hand, from a simple yaml configuration file.",
+        "image": "b4bz/homer:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/homer.png",
+        "name": "homer",
+        "note": "This container requires a yml file within the config volume. See the documentation here https://github.com/bastienwirtz/homer",
+        "platform": "linux",
+        "ports": ["8902:8080/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Homer",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Homer/assets",
+            "container": "/www/assets"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Config/Homer",
+            "container": "/www/config.yml"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Tools"],
+        "description": "Jackett works as a proxy server it translates queries from apps like Sonarr etc into tracker-site-specific http queries and parses the html response sending results back to the requesting software.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/jackett:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/jacket-icon.png",
+        "name": "jackett",
+        "platform": "linux",
+        "ports": ["9117:9117/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Jackett",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Jackett",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Books"],
+        "description": "LazyLibrarian is a program to follow authors and grab metadata for all your digital reading needs.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/lazylibrarian:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/lazylibrarian-icon.png",
+        "name": "lazylibrarian",
+        "platform": "linux",
+        "ports": ["5299:5299/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "LazyLibrarian",
+        "type": 1,
+        "volumes": [
+          {
+            "container": "/config"
+          },
+          {
+            "container": "/downloads"
+          },
+          {
+            "container": "/books"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Music"],
+        "description": "Lidarr is a music collection manager for Usenet and BitTorrent users.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "hotio/lidarr:release",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/lidarr.png",
+        "name": "lidarr",
+        "platform": "linux",
+        "ports": ["8686:8686/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Lidarr",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Lidarr",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "bind": "/portainer/Music",
+            "container": "/music"
+          }
+        ]
+      },
+      {
+        "categories": ["Cloud", "Web", "Management", "Photos"],
+        "description": "Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/lychee:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/lychee-icon.png",
+        "name": "lychee",
+        "platform": "linux",
+        "ports": ["80/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Lychee",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Lychee",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Pictures",
+            "container": "/pictures"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "Medusa, automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/medusa:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/medusa-icon.png",
+        "name": "medusa",
+        "platform": "linux",
+        "ports": ["8081:8081/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Medusa",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Medusa",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/TV",
+            "container": "/tv"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "NZBGet is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources. It supports all platforms including Windows, Mac, Linux and works on all devices including PC, NAS, WLAN routers and media players.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/nzbget:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/nzbget-icon.png",
+        "name": "nzbget",
+        "platform": "linux",
+        "ports": ["6789:6789/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "NZBGet",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Nzbget",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Other", "Tools"],
+        "description": "NZBHydra is a meta search for NZB indexers and the \"spiritual successor\" to NZBmegasearcH. It provides easy access to a number of raw and newznab based indexers.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/nzbhydra2:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/hydra-icon.png",
+        "name": "nzbhydra2",
+        "platform": "linux",
+        "ports": ["5076:5076/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "NZBHydra 2",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Nzbhydra2",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Other"],
+        "description": "OpenVPN Access Server is a full featured secure network tunneling VPN software solution that integrates OpenVPN server capabilities, enterprise management capabilities, simplified OpenVPN Connect UI, and OpenVPN Client software packages that accommodate Windows, MAC, Linux, Android, and iOS environments.",
+        "env": [
+          {
+            "label": "INTERFACE",
+            "name": "INTERFACE",
+            "set": "eth0"
+          },
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/openvpn-as:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/openvpn-as-icon.png",
+        "name": "openvpn-as",
+        "platform": "linux",
+        "ports": ["943:943/tcp", "9443:9443/tcp", "1194:1194/udp"],
+        "restart_policy": "unless-stopped",
+        "title": "OpenVPN Access Server",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/OpenVPN-AS",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Photos"],
+        "description": "A simple, easy way to turn a photo album into a webgallery.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/photoshow:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/photoshow-icon.png",
+        "name": "photoshow",
+        "platform": "linux",
+        "ports": ["80/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "PhotoShow",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Pictures",
+            "container": "/Pictures"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Photoshow/Thumbs",
+            "container": "/Thumbs"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Config/PhotoShow",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Photos"],
+        "description": "Piwigo is photo gallery software for the web, built by an active community of users and developers.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/piwigo:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/piwigo-icon.png",
+        "name": "piwigo",
+        "platform": "linux",
+        "ports": ["80/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Piwigo",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/PiWigo",
+            "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "The qBittorrent project aims to provide an open-source software alternative to µTorrent. qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/qbittorrent:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/qbittorrent-icon.png",
+        "name": "qbittorrent",
+        "platform": "linux",
+        "ports": ["6881:6881/tcp", "6881:6881/udp", "8080:8080/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "qBittorrent",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/qBittorrent",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "Radarr - A fork of Sonarr to work with movies à la Couchpotato.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "hotio/radarr:release",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/radarr.png",
+        "name": "radarr",
+        "platform": "linux",
+        "ports": ["7878:7878/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Radarr",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Radarr",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "bind": "/portainer/Movies",
+            "container": "/movies"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "Popular torrent client with a webui for ease of use.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/rutorrent:latest",
+        "logo": "https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/rutorrent-icon.png",
+        "name": "rutorrent",
+        "platform": "linux",
+        "ports": ["80/tcp", "51413:51413/tcp", "6881:6881/udp"],
+        "restart_policy": "unless-stopped",
+        "title": "ruTorrent",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/ruTorrent",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "SABnzbd makes Usenet as simple and streamlined as possible by automating everything we can. All you have to do is add an .nzb. SABnzbd takes over from there, where it will be automatically downloaded, verified, repaired, extracted and filed away with zero human interaction.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/sabnzbd:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/sabnzbd-icon.png",
+        "name": "sabnzbd",
+        "platform": "linux",
+        "ports": ["8080:8080/tcp", "9090:9090/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "SABnzbd",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Sabnzbd",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "bind": "/portainer/Downloads/incomplete",
+            "container": "/incomplete-downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "Automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/sickchill:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/sickchill-icon.png",
+        "name": "sickchill",
+        "platform": "linux",
+        "ports": ["8081:8081/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "SickChill",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/SickChill",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "bind": "/portainer/TV",
+            "container": "/tv"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "SickGear provides management of TV shows and/or Anime, it detects new episodes, links downloader apps, and more.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/sickgear:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/sickgear-icon.png",
+        "name": "sickgear",
+        "platform": "linux",
+        "ports": ["8081:8081/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "SickGear",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/SickGear",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/TV",
+            "container": "/tv"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders", "Video"],
+        "description": "Sonarr (formerly NZBdrone) is a PVR for usenet and bittorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "hotio/sonarr:release",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/sonarr-icon.png",
+        "name": "sonarr",
+        "platform": "linux",
+        "ports": ["8989:8989/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Sonarr",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Sonarr",
+            "container": "/config"
+          },
+          {
+            "bind": "/dev/rtc",
+            "container": "/dev/rtc"
+          },
+          {
+            "bind": "/portainer/TV",
+            "container": "/tv"
+          },
+          {
+            "bind": "/portainer/Downloads",
+            "container": "/downloads"
+          }
+        ]
+      },
+      {
+        "categories": ["Backup", "Cloud", "Other", "Tools"],
+        "description": "Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers in real time, safely protected from prying eyes.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/syncthing:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/syncthing-icon.png",
+        "name": "syncthing",
+        "platform": "linux",
+        "ports": ["8384:8384/tcp", "21027:21027/udp", "22000:22000/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "SyncThing",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Syncthing",
+            "container": "/config"
+          },
+          {
+            "container": "/sync"
+          }
+        ]
+      },
+      {
+        "categories": ["Downloaders"],
+        "description": "Transmission is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/transmission:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/transmission-icon.png",
+        "name": "transmission",
+        "platform": "linux",
+        "ports": ["9091:9091/tcp", "51413:51413/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Transmission",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/Transmission",
+            "container": "/config"
+          },
+          {
+            "bind": "/portainer/Files/Downloads",
+            "container": "/downloads"
+          },
+          {
+            "container": "/watch"
+          }
+        ]
+      },
+      {
+        "categories": ["Video", "Other"],
+        "description": "Tvheadend is a TV streaming server and recorder for Linux, FreeBSD and Android supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, ISDB-T, IPTV, SAT\u0026gt;IP and HDHomeRun as input sources. Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT\u0026gt;IP streaming. Multiple EPG sources are supported (over-the-air DVB and ATSC including OpenTV DVB extensions, XMLTV, PyXML).",
+        "env": [
+          {
+            "default": "1000",
+            "label": "PUID",
+            "name": "PUID"
+          },
+          {
+            "default": "100",
+            "label": "PGID",
+            "name": "PGID"
+          }
+        ],
+        "image": "linuxserver/tvheadend:latest",
+        "logo": "http://i.imgur.com/zGSUAT4.png",
+        "name": "tvheadend",
+        "platform": "linux",
+        "ports": ["9981:9981/tcp", "9982:9982/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Tvheadend",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/TVHeadend",
+            "container": "/config"
+          },
+          {
+            "container": "/recordings"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Tools", "Maintenance"],
+        "description": "With watchtower you can update the running version of your containerized app simply by pushing a new image to the Docker Hub or your own image registry. Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially.",
+        "image": "containrrr/watchtower:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/watchtower.png",
+        "name": "watchtower",
+        "note": "It is recommended to manually update your containers but we're including this for those of you that don't care",
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "title": "Watchtower",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/var/run/docker.sock",
+            "container": "/var/run/docker.sock"
+          }
+        ]
+      },
+      {
+        "categories": ["Other", "Downloaders"],
+        "description": "YoutubeDL-Material is a Material Design frontend for youtube-dl. It's coded using Angular 9 for the frontend, and Node.js on the backend.",
+        "image": "tzahi12345/youtubedl-material:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/ytdlm.png",
+        "name": "youtubedl-material",
+        "platform": "linux",
+        "ports": ["17442:17442/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "YouTubeDL-Material",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/portainer/Files/AppData/Config/YTDLM",
+            "container": "/app/appdata"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Youtube/Video",
+            "container": "/app/video"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Youtube/Subscriptions",
+            "container": "/app/subscriptions"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Youtube/Users",
+            "container": "/app/users"
+          },
+          {
+            "bind": "/portainer/Files/AppData/Youtube/Audio",
+            "container": "/app/audio"
+          }
+        ]
+      }
+    ]
+  }
