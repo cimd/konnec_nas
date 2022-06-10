@@ -1,0 +1,31 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use App\Traits\Filterable;
+
+class {{ class }} extends Model
+{
+    use SoftDeletes, Filterable;
+
+    protected $table = "{{ class }}";
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $casts = [
+        'integer' => 'integer',
+        'integer' => 'integer',
+        'integer' => 'integer',
+    ];
+
+    protected $filters = [
+        'field' => 'single',
+        'field' => 'single',
+        'field' => 'single',
+        
+        'field' => 'array',
+        'field' => 'like',
+    ];
+}

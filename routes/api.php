@@ -8,6 +8,10 @@ use App\Http\Controllers\API\V1\Package\PackageCentreController;
 use App\Http\Controllers\API\V1\Package\ApacheController;
 use App\Http\Controllers\API\V1\Shell\ShellCommandController;
 
+use App\Http\Controllers\API\TimelineGalleryController;
+use App\Http\Controllers\API\PhotoController;
+use App\Http\Controllers\API\PathController;
+use App\Http\Controllers\API\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,4 +53,12 @@ Route::prefix('v1')->group(function () {
     Route::post('shell/run', [ShellCommandController::class, 'run']);
 
 
+
+    Route::apiResources([
+        'timeline-galleries' => TimelineGalleryController::class,
+        'photos' => PhotoController::class,
+        'paths' => PathController::class,
+    ]);
+    Route::patch('rename/{photo}', [PhotoController::class, 'rename']);
+    Route::patch('exif/{photo}', [PhotoController::class, 'exif']);
 });

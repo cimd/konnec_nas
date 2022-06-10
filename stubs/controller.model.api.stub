@@ -1,0 +1,79 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ namespacedRequests }}
+
+class {{ class }} extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
+    public function index(Request $request)
+    {
+        $result = {{ model }}::filter($request->query)->get();
+        return [
+            'data' => $result->toArray(),
+        ];
+    }
+
+    public function store({{ storeRequest }} $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->all());
+        return [
+            'data' => ${{ modelVariable }}->fresh()->toArray()
+        ];
+    }
+
+    public function storeBatch({{ storeRequest }} $request)
+    {
+        $result = [];
+        foreach ($request->data as $item) {
+            $line = $this->store(new Request($item));
+            array_push($result, $line['data']);
+        }
+        return [
+            'data' => $result
+        ];
+    }
+
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        return [
+            'data' => ${{ modelVariable }}->toArray()
+        ];
+    }
+
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->fill($request->all())->save();
+        return [
+            'data' => ${{ modelVariable }}->toArray()
+        ];
+    }
+
+    public function updateBatch({{ updateRequest }} $request)
+    {
+        $result = [];
+        foreach ($request->data as $item) {
+            ${{ modelVariable }} = {{ modelVariable }}::find($item['id']);
+            $line = $this->update(new Request($item), ${{ modelVariable }});
+            array_push($result, $line['data']);
+        }
+        return [
+            'data' => $result
+        ];
+    }
+
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->delete();
+        return [
+            'data' => ${{ modelVariable }}->toArray()
+        ];
+    }
+}
