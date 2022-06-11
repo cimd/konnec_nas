@@ -37,6 +37,14 @@ Route::prefix('v1')->group(function () {
     // Route::post('users/forgot-password', 'V1\Auth\UserController@forgotPassword');
     // Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
 
+    Route::apiResources([
+        'galleries' => TimelineGalleryController::class,
+        'photos' => PhotoController::class,
+        'paths' => PathController::class,
+    ]);
+    Route::patch('rename/{photo}', [PhotoController::class, 'rename']);
+    Route::patch('exif/{photo}', [PhotoController::class, 'exif']);
+
     Route::post('packages/test', [PackageCentreController::class, 'test']);
     Route::post('packages/install', [PackageCentreController::class, 'install']);
     Route::post('packages/remove', [PackageCentreController::class, 'remove']);
@@ -54,11 +62,5 @@ Route::prefix('v1')->group(function () {
 
 
 
-    Route::apiResources([
-        'timeline-galleries' => TimelineGalleryController::class,
-        'photos' => PhotoController::class,
-        'paths' => PathController::class,
-    ]);
-    Route::patch('rename/{photo}', [PhotoController::class, 'rename']);
-    Route::patch('exif/{photo}', [PhotoController::class, 'exif']);
+
 });
