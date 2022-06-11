@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Photo;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use App\Traits\Filterable;
 
 class Photo extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    use SoftDeletes, Filterable;
     protected $guarded = ['created_at', 'updated_at'];
     protected $casts = [
         'date_taken' => 'date',
@@ -22,14 +22,6 @@ class Photo extends Model
 
     public function exif() {
         return $this->hasOne(Exif::class);
-    }
-
-    public function scopeFilter($query, $request)
-    {
-        // if( isset($request->filter['csel_headers_id']) ){
-        //     $query->where('csel_headers_id', $request->filter['csel_headers_id']);
-        // }
-        return $query;
     }
 
     public function getYearAttribute ()

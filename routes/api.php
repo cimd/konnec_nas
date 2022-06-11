@@ -8,9 +8,9 @@ use App\Http\Controllers\API\V1\Package\PackageCentreController;
 use App\Http\Controllers\API\V1\Package\ApacheController;
 use App\Http\Controllers\API\V1\Shell\ShellCommandController;
 
-use App\Http\Controllers\API\TimelineGalleryController;
-use App\Http\Controllers\API\PhotoController;
-use App\Http\Controllers\API\PathController;
+use App\Http\Controllers\API\Photo\GalleryController;
+use App\Http\Controllers\API\Photo\PhotoController;
+use App\Http\Controllers\API\Photo\PathController;
 use App\Http\Controllers\API\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ use App\Http\Controllers\API\UserController;
 // });
 
 
-Route::prefix('v1')->group(function () {
+// Route::prefix('v1')->group(function () {
     // Route::post('login', 'V1\Auth\UserController@login');
     // Route::apiResource('users', 'V1\Auth\UserController');
     // Route::middleware('auth:sanctum')->group(function () {
@@ -37,30 +37,30 @@ Route::prefix('v1')->group(function () {
     // Route::post('users/forgot-password', 'V1\Auth\UserController@forgotPassword');
     // Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
 
-    Route::apiResources([
-        'galleries' => TimelineGalleryController::class,
-        'photos' => PhotoController::class,
-        'paths' => PathController::class,
-    ]);
-    Route::patch('rename/{photo}', [PhotoController::class, 'rename']);
-    Route::patch('exif/{photo}', [PhotoController::class, 'exif']);
+Route::apiResources([
+    'galleries' => GalleryController::class,
+    'photos' => PhotoController::class,
+    'paths' => PathController::class,
+]);
+Route::patch('rename/{photo}', [PhotoController::class, 'rename']);
+Route::patch('exif/{photo}', [PhotoController::class, 'exif']);
 
-    Route::post('packages/test', [PackageCentreController::class, 'test']);
-    Route::post('packages/install', [PackageCentreController::class, 'install']);
-    Route::post('packages/remove', [PackageCentreController::class, 'remove']);
-    Route::apiResource('packages', PackageCentreController::class);
+Route::post('packages/test', [PackageCentreController::class, 'test']);
+Route::post('packages/install', [PackageCentreController::class, 'install']);
+Route::post('packages/remove', [PackageCentreController::class, 'remove']);
+Route::apiResource('packages', PackageCentreController::class);
 
-    Route::prefix('package')->group(function () {
-        Route::prefix('apache')->group(function () {
-            Route::get('list-envs', [ApacheController::class, 'listEnvs']);
-            Route::get('get-file', [ApacheController::class, 'getFile']);
-            Route::post('update-file', [ApacheController::class, 'updateFile']);
-        });
-
+Route::prefix('package')->group(function () {
+    Route::prefix('apache')->group(function () {
+        Route::get('list-envs', [ApacheController::class, 'listEnvs']);
+        Route::get('get-file', [ApacheController::class, 'getFile']);
+        Route::post('update-file', [ApacheController::class, 'updateFile']);
     });
-    Route::post('shell/run', [ShellCommandController::class, 'run']);
-
-
-
 
 });
+Route::post('shell/run', [ShellCommandController::class, 'run']);
+
+
+
+
+// });

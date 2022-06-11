@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
-use App\Models\Photo;
-use App\Models\Exif;
+use App\Models\Photo\Photo;
+use App\Models\Photo\Exif;
 use Illuminate\Http\Request;
 
-use App\Jobs\RenamePhotoJob;
-use App\Jobs\ReadExifTagsJob;
-use App\Jobs\EditExifTagsJob;
-use App\Jobs\DeleteOriginalsJob;
+use App\Jobs\Photo\RenamePhotoJob;
+use App\Jobs\Photo\ReadExifTagsJob;
+use App\Jobs\Photo\EditExifTagsJob;
+use App\Jobs\Photo\DeleteOriginalsJob;
 
 class PhotoController extends Controller
 {
@@ -21,7 +21,7 @@ class PhotoController extends Controller
      */
     public function index(Request $request)
     {
-        $photos = Photo::filter($request)->with('exif')->orderBy('date_taken', 'Desc')->paginate(25);
+        $photos = Photo::filter($request->query)->with('exif')->orderBy('date_taken', 'Desc')->paginate(25);
         return $photos;
     }
 
@@ -44,8 +44,13 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        $photo = Photo::filter($request)->with('exif')->orderBy('date_taken', 'Desc')->paginate(1);
-        return $photo;
+        $previous = Photo::where('date_taken', '<=', $photo->date_taken)->where('id', '!=', $photo->id)->orderBy('date_taken', 'DESC')->first();
+        $next = Photo::where('date_taken', '>=', $photo->date_taken)->where('id', '!=', $photo->id)->orderBy('date_taken', 'ASC')->first();
+        return [
+            'data' => $photo->load('exif')->toArray(),
+            'previous' => $previous ? $previous->toArray() : null,
+            'next' => $next ? $next->toArray() : null
+        ];
     }
 
     /**
@@ -62,7 +67,7 @@ class PhotoController extends Controller
 
         return [
             'data' => $photo->toArray()
-        ]; 
+        ];
     }
 
     /**

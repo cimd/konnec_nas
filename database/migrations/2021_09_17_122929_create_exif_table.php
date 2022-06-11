@@ -17,7 +17,7 @@ class CreateExifTable extends Migration
     {
         Schema::create('exifs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('photo_id')->constrained();
+            $table->bitInteger('photo_id')->index();
             $table->text('ApertureValue')->nullable();
             $table->text('BrightnessValue')->nullable();
             // $table->smallInteger('ColorSpace')->nullable();

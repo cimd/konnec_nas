@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\PHoto;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -9,9 +9,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-use App\Models\Photo;
-use App\Models\Exif;
-use App\Services\ExifTool;
+use App\Models\Photo\Photo;
+use App\Models\Photo\Exif;
+use App\Services\Photo\ExifTool;
 
 class FullScanJob implements ShouldQueue
 {

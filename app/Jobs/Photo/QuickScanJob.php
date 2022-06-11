@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Photo;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -10,10 +10,10 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use Illuminate\Support\Facades\Storage;
-use App\Models\Photo;
-use App\Models\Path;
+use App\Models\Photo\Photo;
+use App\Models\Photo\Path;
 // use App\Classes\PhotoHandlingClass;
-use App\Services\PhotoHandler;
+use App\Services\Photo\PhotoHandler;
 use Carbon\Carbon;
 
 class QuickScanJob implements ShouldQueue
@@ -35,6 +35,7 @@ class QuickScanJob implements ShouldQueue
     public function getPaths()
     {
         $this->paths = Path::orderBy('path')->get();
+        // var_dump($this->paths);
     }
 
     /**
@@ -47,10 +48,10 @@ class QuickScanJob implements ShouldQueue
         $scanTime = Carbon::now();
         foreach($this->paths as $path) {
             // echo($path->path . PHP_EOL);
-            $files = Storage::allFiles($path->path);
-            // echo($files[0]);
+            $files = Storage::disk('photos')->allFiles($path->path);
+            // echo($files);
             foreach($files as $file) {
-                // echo($file);
+                // echo('hay' . PHP_EOL);
                 if (!str_contains($file, 'thumbs_')) {
                     $this->readFile($file, $scanTime);
                 }
@@ -61,23 +62,8 @@ class QuickScanJob implements ShouldQueue
 
     private function readFile($file, $scanTime)
     {
-        $filePath = Storage::path($file);
+        $filePath = Storage::disk('photos')->path($file);
         PhotoHandler::path($filePath)->import($scanTime)->createThumbnails();
-        // $photoData = PhotoHandler::import($filePath);
-        // $photo = Photo::updateOrCreate(
-        //     [
-        //         'path' =>  $photoData['path'],
-        //         'filename' => $photoData['filename']
-        //     ],
-        //     [
-        //         'sort_title' => $photoData['sort_title'],
-        //         'size' => $photoData['size'],
-        //         'last_modified' => $photoData['last_modified'],
-        //         'last_scan' => $scanTime,
-        //         'date_taken' => $photoData['date_taken'],
-        //         'mime_type' => $photoData['mime_type']
-        //     ]
-        // );
     }
 
     private function deletePhotosNotFound($scan_time) {
