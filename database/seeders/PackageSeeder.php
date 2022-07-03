@@ -113,7 +113,7 @@ class PackageSeeder extends Seeder
                 'description' => 'Plex Media Player',
                 'developer' => 'Plex.tv',
                 'developer_link' => 'plex.tv',
-                'category' => 'media',
+                'category' => '["Media"]',
                 'installed_version' => '',
                 'installed_version_type' => '',
                 'newest_version' => '1.27.2.5929-a806c5905',
