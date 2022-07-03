@@ -8,4 +8,5 @@ find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
 ./konnec_nas/scripts/2020_01_01_000005_install_composer.sh
 ./konnec_nas/scripts/2020_01_01_000007_install_redis.sh
 ./konnec_nas/scripts/2020_01_01_000013_install_supervisor.sh
-./konnec_nas/scripts/2020_01_01_000001_install_konnec_nas.sh
+./konnec_nas/scripts/2020_01_01_000100_install_konnec_nas.sh
+./konnec_nas/scripts/2020_01_01_000200_done.sh

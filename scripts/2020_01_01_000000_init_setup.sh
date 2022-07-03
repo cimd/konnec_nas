@@ -9,3 +9,4 @@ gnupg lsb-release unzip smbclient \
 -y
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt-get update
+sudo apt-get -y upgrade
