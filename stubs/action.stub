@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
 
-class DummyClass implements ShouldQue
+class DummyClass implements ShouldQueue
 {
     /**
     * Create the action.
