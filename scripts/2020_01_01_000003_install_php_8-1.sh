@@ -1,4 +1,6 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
 #PHP 8.1
 echo -e "${GREEN}Installing PHP 8.1${NC}"

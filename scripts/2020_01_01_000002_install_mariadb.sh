@@ -1,5 +1,8 @@
 #!/bin/bash
 # read -p "Enter system's username: " user
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 
 #Maria DB
 echo -e "${GREEN}Installing MariaDB${NC}"
