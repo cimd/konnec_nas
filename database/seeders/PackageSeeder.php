@@ -106,7 +106,20 @@ class PackageSeeder extends Seeder
                 // 'config_route' => '/phpmyadmin',
                 'can_remove' => true,
                 'installation_status' => 'Installed'
-            ],    
+            ],  
+            [
+            'name' => 'Plex',
+            'icon' => '',
+            'description' => 'Plex Media Player',
+            'developer' => 'Plex.tv',
+            'developer_link' => 'plex.tv',
+            'category' => '["media"]',
+            'installed_version' => '',
+            'installed_version_type' => '',
+            'newest_version' => '1.27.2.5929-a806c5905',
+            'newest_version_type' => '',
+            'installation_status' => ''
+            ],  
             // [
             // 'name' => '',
             // 'icon' => '',

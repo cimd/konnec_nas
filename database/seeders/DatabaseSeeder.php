@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
             PkgPackagesTableSeeder::class,
             PackageSeeder::class
         ]);
-        $this->call(PkgPackagesTableSeeder::class);
     }
 }

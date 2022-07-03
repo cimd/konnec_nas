@@ -25,6 +25,7 @@ php /var/www/konnec_nas/artisan config:cache
 php /var/www/konnec_nas/artisan route:cache
 php /var/www/konnec_nas/artisan view:cache
 php /var/www/konnec_nas/artisan event:cache
+php /var/www/konnec_nas/artisan db:seed
 
 echo -e "${GREEN}Setting Apache Server${NC}"
 cp ~/konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available

@@ -41,15 +41,18 @@ class install extends Command
     public function handle()
     {
         $package = Package::where('name', 'Plex')->first();
+        var_dump($package->newest_version);
+
+        $url = "https://downloads.plex.tv/plex-media-server-new/{$package->newest_version}/debian/plexmediaserver_{$package->newest_version}_amd64.deb";
         
-        $processDownload = new Process(['wget', '-O', storage_path('temp') . 'plex.deb', $package->newest_version_url]);
+        $processDownload = new Process(['wget', '-O', storage_path('temp') . 'plex.deb', $url]);
         $processDownload->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+        if (!$processDownload->isSuccessful()) {
+            throw new ProcessFailedException($processDownload);
         }
 
-        $process = new Process(['sudo', 'dpkg ', '-i', $package->newest_version_filename]);
+        $process = new Process(['sudo', 'dpkg ', '-i', storage_path('temp') . '/plex.deb']);
         $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {
@@ -57,6 +60,7 @@ class install extends Command
         }
         $result = $process->getOutput();
         $this->line($result);
-        return $result;
+
+        return true;
     }
 }
