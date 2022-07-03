@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Console\Commands\Packages\Apache;
+namespace App\Console\Commands\App;
 
 use Illuminate\Console\Command;
-use App\Jobs\ApacheRestartJob;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class KonnecSecurityUpdates extends Command
 
 {
@@ -38,7 +40,12 @@ class KonnecSecurityUpdates extends Command
      */
     public function handle()
     {
-        ApacheRestartJob::dispatchAfterResponse();
+        $process = new Process('unattended-upgrades');
+        $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
         return true;
     }
 }
