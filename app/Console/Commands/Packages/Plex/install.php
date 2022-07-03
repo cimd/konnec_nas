@@ -40,19 +40,19 @@ class install extends Command
      */
     public function handle()
     {
-        // $package = Package::where('name', 'Plex')->first();
-        // // var_dump($package->newest_version);
-        // $this->line($package->newest_version);
+        $package = Package::where('name', 'Plex')->first();
+        // var_dump($package->newest_version);
+        $this->line($package->newest_version);
 
-        // $url = "https://downloads.plex.tv/plex-media-server-new/{$package->newest_version}/debian/plexmediaserver_{$package->newest_version}_amd64.deb";
-        // $this->info($url);
-        // $this->info(storage_path('temp') . '/plex.deb');
-        // $processDownload = new Process(['wget', '-O', storage_path('temp') . '/plex.deb', $url]);
-        // $processDownload->run();
-        // // executes after the command finishes
-        // if (!$processDownload->isSuccessful()) {
-        //     throw new ProcessFailedException($processDownload);
-        // }
+        $url = "https://downloads.plex.tv/plex-media-server-new/{$package->newest_version}/debian/plexmediaserver_{$package->newest_version}_amd64.deb";
+        $this->info($url);
+        $this->info(storage_path('temp') . '/plex.deb');
+        $processDownload = new Process(['wget', '-O', storage_path('temp') . '/plex.deb', $url]);
+        $processDownload->run();
+        // executes after the command finishes
+        if (!$processDownload->isSuccessful()) {
+            throw new ProcessFailedException($processDownload);
+        }
         $this->info('Downloaded');
         $this->info('Installing');
 
