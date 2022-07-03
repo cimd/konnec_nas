@@ -46,8 +46,8 @@ class install extends Command
 
         $url = "https://downloads.plex.tv/plex-media-server-new/{$package->newest_version}/debian/plexmediaserver_{$package->newest_version}_amd64.deb";
         $this->info($url);
-
-        $processDownload = new Process(['wget', '-O', storage_path('temp') . 'plex.deb', $url]);
+        $this->info(storage_path('temp') . '/plex.deb');
+        $processDownload = new Process(['wget', '-O', storage_path('temp') . '/plex.deb', $url]);
         $processDownload->run();
         // executes after the command finishes
         if (!$processDownload->isSuccessful()) {
