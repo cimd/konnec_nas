@@ -40,7 +40,7 @@ class KonnecSecurityUpdates extends Command
      */
     public function handle()
     {
-        $process = new Process('unattended-upgrades');
+        $process = new Process(['unattended-upgrades']);
         $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {
