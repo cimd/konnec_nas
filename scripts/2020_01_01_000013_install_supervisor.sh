@@ -1,5 +1,5 @@
 #!/bin/bash
 
 #Supervisor
-echo "Installing Supervisor"
+echo -e "${GREEN}Installing Supervisor${NC}"
 sudo apt-get -y install supervisor

@@ -2,7 +2,7 @@
 # read -p "Enter system's username: " user
 
 #Maria DB
-echo "Installing MariaDB"
+echo -e "${GREEN}Installing MariaDB${NC}"
 sudo apt install mariadb-server automysqlbackup -y
 # sudo systemctl status mariadb
 sudo mysql -u root -e "create user admin@localhost identified by 'konnec';"

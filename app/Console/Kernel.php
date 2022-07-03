@@ -5,7 +5,6 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\App;
-use App\Jobs\UpdateGodaddyJob;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,9 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if (App::environment('nas')) {
-            $schedule->job(new UpdateGodaddyJob)->hourly();
-        }
+        $schedule->command('konnec:security-updates')->daily();
     }
 
     /**

@@ -1,6 +1,8 @@
 #!/bin/bash
-echo "Cleanning Up"
+echo -e "${GREEN}Cleanning Up${NC}"
 rm -r konnec_nas
 
-echo "Installation COMPLETE"
-echo "Run Konnec NAS at: http://127.0.0.1/public/nas"
+echo -e "${GREEN}Installation COMPLETE${NC}"
+ipAddress=`hostname -I`
+echo "Run Konnec NAS at:"
+echo "http://$ipAddress/public/nas"
