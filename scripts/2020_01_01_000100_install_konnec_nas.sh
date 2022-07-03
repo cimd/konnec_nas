@@ -12,8 +12,9 @@ cp -r ~/konnec_nas /var/www/
 # mkdir /var/www/konnec_nas/storage/framework/sessions /var/www/konnec_nas/storage/framework/views /var/www/konnec_nas/storage/framework/cache
 cp /var/www/konnec_nas/.env.example /var/www/konnec_nas/.env
 chmod -R 777 /var/www/konnec_nas/storage
-composer install --optimize-autoloader --working-dir=/var/www/konnec_nas -Y
-# ln -s /home/$USER/konnec_nas/public/storage /home/$USER/konnec_nas/storage/app/electron/Packaged
+
+composer config --working-dir=/var/www/konnec_nas --no-interaction http-basic.nova.laravel.com christian.daquino@gmail.com qHjBb3JN9ZWFo8G0w4qEyt94cHQhOaBMgUvl33aLk2wd1yrFgK
+composer install --working-dir=/var/www/konnec_nas --optimize-autoloader --no-interaction
 # mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 php /var/www/konnec_nas/artisan key:generate
 php /var/www/konnec_nas/artisan migrate --force
