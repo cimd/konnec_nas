@@ -1,4 +1,9 @@
 # konnec_nas
+
+php artisan db:seed --class=UserSeeder
+
+
+
  
 git clone https://github.com/cimd/konnec_nas.git
 
