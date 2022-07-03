@@ -4,6 +4,9 @@ sudo apt update
 sudo apt upgrade -Y
 sudo apt install git -Y
 git clone https://github.com/cimd/konnec_nas.git
+chmod +x ./konnec_nas/install.sh
+./konnec_nas/install.sh
+
 chmod +x scripts/*.sh
 <!-- sudo cp -r konnec_nas /var/www/ -->
 <!-- chmod u+x ./konnec_nas/install.sh -->

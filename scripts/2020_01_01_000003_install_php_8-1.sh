@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PHP 7.4
+#PHP 8.1
 echo "Installing PHP 8.1"
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
