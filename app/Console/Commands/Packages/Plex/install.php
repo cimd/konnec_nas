@@ -42,7 +42,7 @@ class install extends Command
     {
         $package = Package::where('name', 'Plex')->first();
         
-        $processDownload = new Process(['wget', $package->newest_version_url]);
+        $processDownload = new Process(['wget', '-O', storage_path('temp') . 'plex.deb', $package->newest_version_url]);
         $processDownload->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {

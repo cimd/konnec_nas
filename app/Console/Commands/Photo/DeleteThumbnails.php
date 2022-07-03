@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Photos;
+namespace App\Console\Commands\Photo;
 
 use Illuminate\Console\Command;
 use App\Jobs\DeleteThumbnailsJob;

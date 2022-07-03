@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Packages\Docker;
+namespace App\Console\Commands\Packages\Duplicati;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -15,14 +15,14 @@ class install extends Command
      *
      * @var string
      */
-    protected $signature = 'docker:install';
+    protected $signature = 'duplicati:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Docker Install';
+    protected $description = 'Duplicati Install';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class install extends Command
      */
     public function handle()
     {
-        $package = Package::where('name', 'Docker')->first();
+        // $package = Package::where('name', 'Webmin')->first();
         
         $process = new Process(['sh ./install.sh']);
         $process->run();
@@ -50,11 +50,6 @@ class install extends Command
             throw new ProcessFailedException($process);
         }
 
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        return 0;
+        return true;
     }
 }

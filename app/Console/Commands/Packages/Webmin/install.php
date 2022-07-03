@@ -42,18 +42,13 @@ class install extends Command
     {
         // $package = Package::where('name', 'Webmin')->first();
         
-        $process = new Process('sh ./install.sh');
+        $process = new Process(['sh ./install.sh']);
         $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        return 0;
+        return true;
     }
 }

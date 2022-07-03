@@ -13,6 +13,7 @@ echo -e "${GREEN}Installing Konnec NAS${NC}"
 cp -r ~/konnec_nas /var/www/
 # mkdir /var/www/konnec_nas/storage/framework/sessions /var/www/konnec_nas/storage/framework/views /var/www/konnec_nas/storage/framework/cache
 cp /var/www/konnec_nas/.env.example /var/www/konnec_nas/.env
+mkdir /var/www/konnec_nas/storage/temp
 chmod -R 777 /var/www/konnec_nas/storage
 
 composer config --working-dir=/var/www/konnec_nas --no-interaction http-basic.nova.laravel.com christian.daquino@gmail.com qHjBb3JN9ZWFo8G0w4qEyt94cHQhOaBMgUvl33aLk2wd1yrFgK
