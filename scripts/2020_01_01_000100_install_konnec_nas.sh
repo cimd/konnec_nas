@@ -20,12 +20,11 @@ sudo composer config --working-dir=/var/www/konnec_nas --no-interaction http-bas
 sudo composer install --working-dir=/var/www/konnec_nas --optimize-autoloader --no-interaction
 # mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 sudo php /var/www/konnec_nas/artisan key:generate
-sudo php /var/www/konnec_nas/artisan migrate --force
+sudo php /var/www/konnec_nas/artisan migrate --seed --force
 sudo php /var/www/konnec_nas/artisan config:cache
 sudo php /var/www/konnec_nas/artisan route:cache
 sudo php /var/www/konnec_nas/artisan view:cache
 sudo php /var/www/konnec_nas/artisan event:cache
-sudo php /var/www/konnec_nas/artisan db:seed
 
 echo -e "${GREEN}Setting Apache Server${NC}"
 sudo cp ~/konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available
