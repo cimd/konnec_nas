@@ -2,7 +2,15 @@
  
 sudo apt update
 sudo apt upgrade -Y
-sudo apt install git -Y
+wget https://github.com/cimd/konnec_nas_LARAVEL/blob/main/install.sh
+chmod +x ./install.sh
+./install.sh
+
+
+
+
+
+
 git clone https://github.com/cimd/konnec_nas.git
 chmod +x ./konnec_nas/install.sh
 ./konnec_nas/install.sh

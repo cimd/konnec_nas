@@ -1,4 +1,12 @@
 #!/bin/bash
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install git
+cd ~
+git clone https://github.com/cimd/konnec_nas_LARAVEL.git konnec_nas
+
+
 find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
 
 ./konnec_nas/scripts/2020_01_01_000000_init_setup.sh
