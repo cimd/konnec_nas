@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Models\Package;
+
 class install extends Command
 
 {
@@ -41,29 +42,17 @@ class install extends Command
     public function handle()
     {
         $package = Package::where('name', 'Plex')->first();
-        // var_dump($package->newest_version);
-        $this->line($package->newest_version);
+        $process = new Process(['./install.sh']);
+        $process->setTimeout(120);
+        $process->start();
 
-        $url = "https://downloads.plex.tv/plex-media-server-new/{$package->newest_version}/debian/plexmediaserver_{$package->newest_version}_amd64.deb";
-        $this->info($url);
-        $this->info(storage_path('temp') . '/plex.deb');
-        $processDownload = new Process(['wget', '-O', storage_path('temp') . '/plex.deb', $url]);
-        $processDownload->run();
-        // executes after the command finishes
-        if (!$processDownload->isSuccessful()) {
-            throw new ProcessFailedException($processDownload);
+        foreach ($process as $type => $data) {
+            echo $data;
         }
-        $this->info('Downloaded');
-        $this->info('Installing');
-
-        $process = new Process(['/var/lib/dpkg ', '-i', storage_path('temp') . '/plex.deb']);
-        $process->run();
         // executes after the command finishes
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-        $result = $process->getOutput();
-        $this->line($result);
 
         return true;
     }

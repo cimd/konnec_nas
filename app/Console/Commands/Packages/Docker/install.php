@@ -42,14 +42,14 @@ class install extends Command
     public function handle()
     {
         $package = Package::where('name', 'Docker')->first();
-        
-        $process = new Process(['sh ./install.sh']);
-        $process->run();
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
 
+        $process = new Process(['./install.sh']);
+        $process->setTimeout(120);
+        $process->start();
+
+        foreach ($process as $type => $data) {
+            echo $data;
+        }
         // executes after the command finishes
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
