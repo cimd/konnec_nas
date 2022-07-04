@@ -44,7 +44,16 @@ class install extends Command
         // $package = Package::where('name', 'Webmin')->first();
 
         $process = new Process(['./install.sh']);
-        $process->run();
+        $process->setTimeout(120);
+        $process->start();
+
+        foreach ($process as $type => $data) {
+            if ($process::OUT === $type) {
+                echo "\nRead from stdout: " . $data;
+            } else { // $process::ERR === $type
+                echo "\nRead from stderr: " . $data;
+            }
+        }
         // executes after the command finishes
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
