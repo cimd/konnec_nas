@@ -4,4 +4,4 @@ NC='\033[0m' # No Color
 
 #Supervisor
 echo -e "${GREEN}Installing Supervisor${NC}"
-sudo apt-get -y install supervisor
+sudo apt -y install supervisor
