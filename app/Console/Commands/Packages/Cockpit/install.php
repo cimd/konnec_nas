@@ -43,7 +43,7 @@ class install extends Command
     {
         // $package = Package::where('name', 'Webmin')->first();
 
-        $process = new Process([app_path('Console/Commands/Packages/Cockpit/install.sh')]);
+        $process = new Process(['./app/Console/Commands/Packages/Cockpit/install.sh']);
         $process->setTimeout(120);
         $process->start();
 
