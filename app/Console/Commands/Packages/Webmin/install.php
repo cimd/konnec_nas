@@ -42,6 +42,7 @@ class install extends Command
     public function handle()
     {
         // $package = Package::where('name', 'Webmin')->first();
+        echo dirname(__FILE__);
 
         $process = new Process([app_path('Console/Commands/Packages/Webmin/install.sh')]);
         $process->setTimeout(120);
