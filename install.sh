@@ -2,7 +2,7 @@
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git
+sudo apt install git -y
 cd ~
 git clone https://github.com/cimd/konnec_nas_LARAVEL.git konnec_nas
 
