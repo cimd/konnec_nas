@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Packages\Syncthing;
+namespace App\Console\Commands\Packages\nodejs;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -15,14 +15,14 @@ class install extends Command
      *
      * @var string
      */
-    protected $signature = 'syncthing:install';
+    protected $signature = 'nodejs:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Syncthing Install';
+    protected $description = 'NodeJS Install';
 
     /**
      * Create a new command instance.
@@ -42,6 +42,7 @@ class install extends Command
     public function handle()
     {
         // $package = Package::where('name', 'Webmin')->first();
+        echo dirname(__FILE__);
 
         $process = new Process([dirname(__FILE__) . '/install.sh']);
         $process->setTimeout(120);

@@ -42,7 +42,8 @@ class install extends Command
     public function handle()
     {
         $package = Package::where('name', 'Plex')->first();
-        $process = new Process(['./install.sh']);
+
+        $process = new Process([dirname(__FILE__) . '/install.sh']);
         $process->setTimeout(120);
         $process->start();
 

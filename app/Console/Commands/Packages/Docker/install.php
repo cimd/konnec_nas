@@ -43,7 +43,7 @@ class install extends Command
     {
         $package = Package::where('name', 'Docker')->first();
 
-        $process = new Process(['./install.sh']);
+        $process = new Process([dirname(__FILE__) . '/install.sh']);
         $process->setTimeout(120);
         $process->start();
 
