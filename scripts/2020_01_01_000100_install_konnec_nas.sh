@@ -10,7 +10,7 @@ flush privileges;"
 
 # Install Laravel
 echo -e "${GREEN}Installing Konnec NAS${NC}"
-sudo cp -r ~/konnec_nas /var/www/
+sudo cp -r ./konnec_nas /var/www/
 # mkdir /var/www/konnec_nas/storage/framework/sessions /var/www/konnec_nas/storage/framework/views /var/www/konnec_nas/storage/framework/cache
 sudo cp /var/www/konnec_nas/.env.example /var/www/konnec_nas/.env
 sudo mkdir /var/www/konnec_nas/storage/temp
