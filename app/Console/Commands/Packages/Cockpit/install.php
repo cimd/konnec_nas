@@ -48,11 +48,7 @@ class install extends Command
         $process->start();
 
         foreach ($process as $type => $data) {
-            if ($process::OUT === $type) {
-                echo "\nRead from stdout: " . $data;
-            } else { // $process::ERR === $type
-                echo "\nRead from stderr: " . $data;
-            }
+            echo $data;
         }
         // executes after the command finishes
         if (!$process->isSuccessful()) {
