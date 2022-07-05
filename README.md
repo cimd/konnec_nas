@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/cimd/konnec_nas_LARAVEL/main/install.sh
 
 
 
-
+git clone https://github.com/cimd/konnec_nas_LARAVEL.git konnec_nas
 chmod +x ./konnec_nas/install.sh
 
 
@@ -24,6 +24,7 @@ php artisan db:seed --class=UserSeeder
 find ./installation/ -name "*.sh" -exec chmod +x {} \;
 find ./app/Packages/ -name "*.sh" -exec chmod +x {} \;
 
+phpMyAdmin
 Snap
 Plex
 Adguard
