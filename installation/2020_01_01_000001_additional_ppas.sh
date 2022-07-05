@@ -7,10 +7,10 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}Adding PPAs${NC}"
 
 # PHP
-sudo add-apt-repository ppa:ondrej/php -y
+add-apt-repository ppa:ondrej/php -y
 
 # Webmin
-curl -fsSL https://download.webmin.com/jcameron-key.asc | sudo gpg --dearmor -o /usr/share/keyrings/webmin.gpg
+curl -fsSL https://download.webmin.com/jcameron-key.asc | gpg --dearmor -o /usr/share/keyrings/webmin.gpg
 echo "deb [signed-by=/usr/share/keyrings/webmin.gpg] http://download.webmin.com/download/repository sarge contrib" \
 >> /etc/apt/sources.list
 
@@ -18,5 +18,5 @@ echo "deb [signed-by=/usr/share/keyrings/webmin.gpg] http://download.webmin.com/
 
 
 
-sudo apt update
-sudo apt upgrade -y
+apt update
+apt upgrade -y

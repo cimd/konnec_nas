@@ -6,12 +6,12 @@ NC='\033[0m' # No Color
 
 #Maria DB
 echo -e "${GREEN}Installing MariaDB${NC}"
-sudo apt install mariadb-server automysqlbackup -y
-# sudo systemctl status mariadb
-sudo mysql -u root -e "create user admin@localhost identified by 'konnec';"
-sudo mysql -u root -e "GRANT ALL privileges ON *.* TO 'admin'@localhost;"
-sudo mysql -u root -e "flush PRIVILEGES;"
+apt install mariadb-server automysqlbackup -y
+# systemctl status mariadb
+mysql -u root -e "create user admin@localhost identified by 'konnec';"
+mysql -u root -e "GRANT ALL privileges ON *.* TO 'admin'@localhost;"
+mysql -u root -e "flush PRIVILEGES;"
 
 # Setup Backups
-sudo automysqlbackup
-# sudo nano /etc/default/automysqlbackup
+automysqlbackup
+# nano /etc/default/automysqlbackup

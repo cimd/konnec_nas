@@ -1,1 +1,1 @@
-sudo apt install postfix telnet -y
+apt install postfix telnet -y
