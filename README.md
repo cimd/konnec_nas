@@ -21,7 +21,8 @@ chmod +x ./konnec_nas/install.sh
 
 
 php artisan db:seed --class=UserSeeder
-find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
+find ./installation/ -name "*.sh" -exec chmod +x {} \;
+find ./app/Packages/ -name "*.sh" -exec chmod +x {} \;
 
 Snap
 Plex
