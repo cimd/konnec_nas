@@ -1,9 +1,9 @@
 # konnec_nas
- 
+
+## Installation Instructions 
 sudo apt update
 sudo apt upgrade -Y
 wget https://github.com/cimd/konnec_nas_LARAVEL/blob/main/install.sh
-chmod +x ./install.sh
 ./install.sh
 
 
@@ -11,22 +11,12 @@ chmod +x ./install.sh
 
 
 
-git clone https://github.com/cimd/konnec_nas.git
 chmod +x ./konnec_nas/install.sh
-./konnec_nas/install.sh
-
-chmod +x scripts/*.sh
-<!-- sudo cp -r konnec_nas /var/www/ -->
-<!-- chmod u+x ./konnec_nas/install.sh -->
-
-find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
-
-sudo ./konnec_nas/install.sh
 
 
 
 php artisan db:seed --class=UserSeeder
-
+find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
 
 Snap
 Plex

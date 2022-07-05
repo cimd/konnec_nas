@@ -16,15 +16,16 @@ sudo cp /var/www/konnec_nas/.env.example /var/www/konnec_nas/.env
 sudo mkdir /var/www/konnec_nas/storage/temp
 sudo chmod -R 777 /var/www/konnec_nas/storage
 
-sudo composer config --working-dir=/var/www/konnec_nas --no-interaction http-basic.nova.laravel.com christian.daquino@gmail.com qHjBb3JN9ZWFo8G0w4qEyt94cHQhOaBMgUvl33aLk2wd1yrFgK
+# sudo composer config --working-dir=/var/www/konnec_nas --no-interaction http-basic.nova.laravel.com christian.daquino@gmail.com qHjBb3JN9ZWFo8G0w4qEyt94cHQhOaBMgUvl33aLk2wd1yrFgK
 sudo composer install --working-dir=/var/www/konnec_nas --optimize-autoloader --no-interaction
-# mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
+
 sudo php /var/www/konnec_nas/artisan key:generate
 sudo php /var/www/konnec_nas/artisan migrate --seed --force
 sudo php /var/www/konnec_nas/artisan config:cache
 sudo php /var/www/konnec_nas/artisan route:cache
 sudo php /var/www/konnec_nas/artisan view:cache
 sudo php /var/www/konnec_nas/artisan event:cache
+# mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 
 echo -e "${GREEN}Setting Apache Server${NC}"
 sudo cp ~/konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available
