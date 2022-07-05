@@ -4,7 +4,8 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}Updating environment${NC}"
-sudo apt update & upgrade -y
+sudo apt update
+sudo apt upgrade -y
 sudo apt install git -y
 
 

@@ -18,4 +18,5 @@ echo "deb [signed-by=/usr/share/keyrings/webmin.gpg] http://download.webmin.com/
 
 
 
-sudo apt update & upgrade -y
+sudo apt update
+sudo apt upgrade -y
