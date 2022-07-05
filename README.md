@@ -8,7 +8,7 @@ Disk Space: +50Gb
 ## Installation Instructions 
 sudo apt update
 sudo apt upgrade -Y
-wget https://github.com/cimd/konnec_nas_LARAVEL/blob/main/install.sh
+wget https://raw.githubusercontent.com/cimd/konnec_nas_LARAVEL/main/install.sh
 ./install.sh
 
 
