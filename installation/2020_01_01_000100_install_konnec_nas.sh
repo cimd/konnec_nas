@@ -25,6 +25,7 @@ sudo php /var/www/konnec_nas/artisan config:cache
 sudo php /var/www/konnec_nas/artisan route:cache
 sudo php /var/www/konnec_nas/artisan view:cache
 sudo php /var/www/konnec_nas/artisan event:cache
+sudo php /var/www/konnec_nas/artisan storage:link
 # mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 
 echo -e "${GREEN}Setting Apache Server${NC}"

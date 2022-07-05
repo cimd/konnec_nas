@@ -1,4 +1,9 @@
-# konnec_nas
+# Konnec NAS
+
+## Requirements
+Ubuntu 22.04
+Disk Space: +50Gb
+4Gb RAM
 
 ## Installation Instructions 
 sudo apt update
