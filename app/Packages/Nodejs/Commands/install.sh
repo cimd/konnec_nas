@@ -11,4 +11,4 @@ echo "Installing Nodev14"
 # echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 # apt update && apt install yarn
 
-snap install node --channel=14/stable --classic -y
+snap install node --channel=14/stable --classic
