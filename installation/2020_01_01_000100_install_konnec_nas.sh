@@ -29,8 +29,8 @@ php /var/www/konnec_nas/artisan storage:link
 # mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 
 echo -e "${GREEN}Setting Apache Server${NC}"
-cp ~/konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available
-cp ~/konnec_nas/setup/apache/konnec.conf /etc/apache2/sites-available
+cp ./konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available
+cp ./konnec_nas/setup/apache/konnec.conf /etc/apache2/sites-available
 a2ensite konnec-api.conf
 a2ensite konnec.conf
 systemctl reload apache2
