@@ -14,8 +14,8 @@ curl -fsSL https://download.webmin.com/jcameron-key.asc | gpg --dearmor -o /usr/
 echo "deb [signed-by=/usr/share/keyrings/webmin.gpg] https://download.webmin.com/download/repository sarge contrib" \
 >> /etc/apt/sources.list
 
-
-
+# Cockpit & packages
+curl -sSL https://repo.45drives.com/setup | sudo bash
 
 
 apt update

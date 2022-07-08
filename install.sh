@@ -26,5 +26,4 @@ git clone https://github.com/cimd/konnec_nas_LARAVEL.git konnec_nas
 ./konnec_nas/installation/2020_01_01_000110_exiftool.sh
 ./konnec_nas/installation/2020_01_01_000111_ffmpeg.sh
 ./konnec_nas/installation/2020_01_01_000120_cockpit.sh
-./konnec_nas/installation/2020_01_01_000121_webmin.sh
 ./konnec_nas/installation/2020_01_01_000200_done.sh

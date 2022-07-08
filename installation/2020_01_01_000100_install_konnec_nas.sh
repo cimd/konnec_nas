@@ -31,6 +31,7 @@ php /var/www/konnec_nas/artisan storage:link
 echo -e "${GREEN}Setting Apache Server${NC}"
 cp ./konnec_nas/setup/apache/konnec-api.conf /etc/apache2/sites-available
 cp ./konnec_nas/setup/apache/konnec.conf /etc/apache2/sites-available
+a2dissite 000-default.conf
 a2ensite konnec-api.conf
 a2ensite konnec.conf
 systemctl reload apache2
