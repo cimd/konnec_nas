@@ -4,14 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\API\V1\Package\PackageCentreController;
-use App\Http\Controllers\API\V1\Package\ApacheController;
-use App\Http\Controllers\API\V1\Shell\ShellCommandController;
+use App\Http\Controllers\API\Package\PackageCentreController;
+use App\Http\Controllers\API\Package\ApacheController;
+use App\Http\Controllers\API\Shell\ShellCommandController;
 
 use App\Http\Controllers\API\Photo\GalleryController;
 use App\Http\Controllers\API\Photo\PhotoController;
 use App\Http\Controllers\API\Photo\PathController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,19 +23,13 @@ use App\Http\Controllers\API\UserController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', 'Auth\UserController@user');
 
-
-// Route::prefix('v1')->group(function () {
-    // Route::post('login', 'V1\Auth\UserController@login');
-    // Route::apiResource('users', 'V1\Auth\UserController');
-    // Route::middleware('auth:sanctum')->group(function () {
-    //     Route::post('logout', 'V1\Auth\UserController@logout');
-    // });
-    // Route::post('users/forgot-password', 'V1\Auth\UserController@forgotPassword');
-    // Route::post('users/reset-password', 'V1\Auth\UserController@resetPassword');
+Route::post('login', 'Auth\UserController@login');
+Route::apiResource('users', 'Auth\UserController');
+Route::post('users/forgot-password', 'Auth\UserController@forgotPassword');
+Route::post('users/reset-password', 'Auth\UserController@resetPassword');
+Route::middleware('auth:sanctum')->post('logout', 'Auth\UserController@logout');
 
 Route::apiResources([
     'galleries' => GalleryController::class,
@@ -56,7 +50,6 @@ Route::prefix('package')->group(function () {
         Route::get('get-file', [ApacheController::class, 'getFile']);
         Route::post('update-file', [ApacheController::class, 'updateFile']);
     });
-
 });
 Route::post('shell/run', [ShellCommandController::class, 'run']);
 

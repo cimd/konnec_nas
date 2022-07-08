@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\API\V1\Auth;
+namespace App\Http\Controllers\API\Auth;
 
 // use App\Mail\ResetPasswordMail;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use App\User;
-use App\Role;
+use App\Models\Auth\User;
 use Auth;
-use Exception;
+// use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 
 class UserController
 {
@@ -19,31 +17,22 @@ class UserController
 
     public function index(Request $request)
     {
-        $users = Cache::rememberForever('users', function () {
-            return User::select(['id', 'name', 'configs_locations_id'])
-                        ->orderBy('name')
-                        ->get();
-        });
+        $users = User::select(['id', 'name'])
+            ->orderBy('name')
+            ->get();
         return response()->json($users);
     }
 
     public function login(Request $request)
     {
-        // dd($request->username);
         if (Auth::attempt(['username' =>  $request->username, 'password' =>  $request->password])) {
-            // dd('yes');
             $user = Auth::user();
-            $roles = DB::table('role_user')->where('user_id', $user->id)->get();
-            $user->role = $roles[0]->role_id * 1;
-            $token = $user->createToken('sps-token')->plainTextToken;
-            // dd('here');
+            $token = $user->createToken('konnec-token')->plainTextToken;
             return [
                 'user' => $user->toArray(),
-                'roles' => $roles->toArray(),
                 'token' => $token
             ];
-        }
-        else {
+        } else {
             return response()->json('Error logging in', 400);
         }
     }
@@ -57,37 +46,25 @@ class UserController
     public function store(Request $request)
     {
         $user = User::create([
-          'name'     => $request->name,
-          'username'     => $request->username,
-          'configs_locations_id'     => $request->configs_locations_id,
-          'email'    => $request->email,
-          'password' => bcrypt($request->password),
+            'name'     => $request->name,
+            'username'     => $request->username,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
         ]);
-        $user
-           ->roles()
-           ->attach(Role::where('id', 10)->first());
-
-        $roles = DB::table('role_user')->where('user_id', $user->id)->get();
-        $user->role = $roles[0]->id;
-
-        $token = $user->createToken('sps-token')->plainTextToken;
-
-        // $this->setAndRetrieveUsersCache();
+        $token = $user->createToken('konnec-token')->plainTextToken;
 
         return [
             'user' => $user->toArray(),
-            'roles' => $roles->toArray(),
             'token' => $token
         ];
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $user = User::find($id);
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
-
-        // $this->setAndRetrieveUsersCache();
 
         return [
             'data' => $user->toArray()
@@ -97,19 +74,16 @@ class UserController
     public function show($id)
     {
         $user = User::find($id);
-        $roles = DB::table('role_user')->where('user_id', $id)->get();
-        $user->role = $roles[0]->role_id;
-        $token = $user->createToken('sps-token')->plainTextToken;
+        $token = $user->createToken('konnec-token')->plainTextToken;
         return [
             'user' => $user->toArray(),
-            'roles' => $roles->toArray(),
             'token' => $token
         ];
     }
 
     public function forgotPassword(Request $request)
     {
-        $user = User::where('email',$request->email)->firstOrFail();
+        $user = User::where('email', $request->email)->firstOrFail();
         $token = str_random(60);
         DB::table('password_resets')
             ->insert([
@@ -121,7 +95,6 @@ class UserController
         return [
             'message' => 'We have e-mailed your password reset link!'
         ];
-
     }
 
     public function resetPassword(Request $request)
@@ -134,18 +107,8 @@ class UserController
 
         $req = [];
         $req['username'] = $user->username;
-        $req['password'] = $request->password; 
-        $result = $this->login(new Request ($req));
+        $req['password'] = $request->password;
+        $result = $this->login(new Request($req));
         return $result;
     }
-    
-    // private function setAndRetrieveUsersCache ()
-    // {
-    //     $users = User::select(['id', 'name', 'configs_locations_id'])
-    //                     ->orderBy('name')
-    //                     ->get();
-    //     Cache::put('users', $users);
-    //     return $users;
-    // }
-
 }

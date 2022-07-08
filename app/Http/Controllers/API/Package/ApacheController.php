@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\V1\Package;
+namespace App\Http\Controllers\API\Package;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,12 +12,14 @@ class ApacheController extends Controller
 {
     private $path;
 
-    public function __construct() {
+    public function __construct()
+    {
         // $this->path = '/var/apache2/sites-available';
         $this->path = 'C:\\Users\\Ingo\\OneDrive\\Desktop\\';
     }
 
-    public function listEnvs (Request $request) {
+    public function listEnvs(Request $request)
+    {
         // Artisan::call('apache:list-envs');
         // $result = Artisan::output();
 
@@ -31,12 +33,14 @@ class ApacheController extends Controller
         ];
     }
 
-    public function getFile (Request $request) {
+    public function getFile(Request $request)
+    {
         $file = file_get_contents($this->path . $request->filename);
         return $file;
     }
 
-    public function updateFile (Request $request) {
+    public function updateFile(Request $request)
+    {
         $file = file_put_contents($this->path . $request->filename, $request->data);
         Artisan::call('apache:update-envs ' . $request->filename);
         Artisan::call('apache:restart');
