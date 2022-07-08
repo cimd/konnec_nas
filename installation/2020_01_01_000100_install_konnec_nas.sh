@@ -21,10 +21,10 @@ composer install --working-dir=/var/www/konnec_nas --optimize-autoloader --no-in
 
 php /var/www/konnec_nas/artisan key:generate
 php /var/www/konnec_nas/artisan migrate --seed --force
-php /var/www/konnec_nas/artisan config:cache
-php /var/www/konnec_nas/artisan route:cache
-php /var/www/konnec_nas/artisan view:cache
-php /var/www/konnec_nas/artisan event:cache
+# php /var/www/konnec_nas/artisan config:cache
+# php /var/www/konnec_nas/artisan route:cache
+# php /var/www/konnec_nas/artisan view:cache
+# php /var/www/konnec_nas/artisan event:cache
 php /var/www/konnec_nas/artisan storage:link
 # mariadb -u root -p   /var/www/konnec_nas/database-setup.sql
 
