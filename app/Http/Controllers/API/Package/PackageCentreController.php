@@ -45,7 +45,7 @@ class PackageCentreController extends Controller
                 Artisan::call('app:test');
                 break;
         }
-        $result = Artisan::output();
+        $result = true;
         return $result;
     }
 
