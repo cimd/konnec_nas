@@ -38,8 +38,8 @@ class PackageCentreController extends Controller
     public function install(Request $request)
     {
         switch ($request->name) {
-            case 'Lollypop':
-                Artisan::call('install:lollypop');
+            case 'Mosquitto':
+                Artisan::call('mosquitto:install');
                 break;
         }
         $result = Artisan::output();
