@@ -42,7 +42,9 @@ class PackageCentreController extends Controller
                 Artisan::call('mosquitto:install');
                 break;
             case 'Test':
-                Artisan::call('app:test');
+                // Artisan::call('app:test');
+                break;
+            default:
                 break;
         }
         $result = true;
