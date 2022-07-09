@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Artisan;
 use App\Models\Package;
+// use App\Events\TerminalMessage;
 
 class PackageCentreController extends Controller
 {
     public function index(Request $request)
     {
         $result = Package::with('dependency')->get();
+        // TerminalMessage::dispatch('test');
         return $result->toArray();
     }
 
