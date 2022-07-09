@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Models\Package;
+use App\Events\TerminalMessage;
 
 class install extends Command
 
@@ -48,6 +49,7 @@ class install extends Command
         $process->start();
 
         foreach ($process as $type => $data) {
+            TerminalMessage::dispatch($data);
             echo $data;
         }
         // executes after the command finishes
