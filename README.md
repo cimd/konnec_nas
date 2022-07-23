@@ -1,15 +1,30 @@
-# konnec_nas
- 
-git clone https://github.com/cimd/konnec_nas.git
+# Konnec NAS
 
-<!-- sudo cp -r konnec_nas /var/www/ -->
-<!-- chmod u+x ./konnec_nas/install.sh -->
+## Requirements
+Ubuntu 22.04
+Disk Space: +50Gb
+4Gb RAM
 
-find ./konnec_nas/scripts/ -name "*.sh" -exec chmod +x {} \;
+## Installation Instructions 
+sudo apt update
+sudo apt upgrade -Y
+wget https://raw.githubusercontent.com/cimd/konnec_nas_LARAVEL/main/install.sh
+./install.sh
 
-sudo ./konnec_nas/install.sh
 
 
+
+
+git clone https://github.com/cimd/konnec_nas_LARAVEL.git konnec_nas
+chmod +x ./konnec_nas/install.sh
+
+
+
+php artisan db:seed --class=UserSeeder
+find ./installation/ -name "*.sh" -exec chmod +x {} \;
+find ./app/Packages/ -name "*.sh" -exec chmod +x {} \;
+
+phpMyAdmin
 Snap
 Plex
 Adguard

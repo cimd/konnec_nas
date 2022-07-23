@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 // use App\Mail\ResetPasswordMail;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Auth\User;
 // use App\Role;
 use Auth;
 use Exception;
@@ -22,8 +22,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users =  User::select(['id', 'name', 'email'])
-                        // ->orderBy('name')
-                        ->get();
+            // ->orderBy('name')
+            ->get();
         return response()->json($users);
     }
 
@@ -42,8 +42,7 @@ class UserController extends Controller
                 // 'roles' => $roles->toArray(),
                 'token' => $token
             ];
-        }
-        else {
+        } else {
             return response()->json('Error logging in', 400);
         }
     }
@@ -57,11 +56,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::create([
-          'name'     => $request->name,
-        //   'username'     => $request->username,
-        //   'configs_locations_id'     => $request->configs_locations_id,
-          'email'    => $request->email,
-          'password' => bcrypt($request->password),
+            'name'     => $request->name,
+            //   'username'     => $request->username,
+            //   'configs_locations_id'     => $request->configs_locations_id,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
         ]);
         // $user
         //    ->roles()
@@ -81,7 +80,8 @@ class UserController extends Controller
         ];
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $user = User::find($id);
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
@@ -109,7 +109,7 @@ class UserController extends Controller
 
     public function forgotPassword(Request $request)
     {
-        $user = User::where('email',$request->email)->firstOrFail();
+        $user = User::where('email', $request->email)->firstOrFail();
         $token = str_random(60);
         DB::table('password_resets')
             ->insert([
@@ -121,7 +121,6 @@ class UserController extends Controller
         return [
             'message' => 'We have e-mailed your password reset link!'
         ];
-
     }
 
     public function resetPassword(Request $request)
@@ -134,11 +133,11 @@ class UserController extends Controller
 
         $req = [];
         $req['email'] = $user->email;
-        $req['password'] = $request->password; 
-        $result = $this->login(new Request ($req));
+        $req['password'] = $request->password;
+        $result = $this->login(new Request($req));
         return $result;
     }
-    
+
     // private function setAndRetrieveUsersCache ()
     // {
     //     $users = User::select(['id', 'name', 'configs_locations_id'])
