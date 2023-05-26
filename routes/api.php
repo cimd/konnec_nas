@@ -26,7 +26,7 @@ Route::apiResource('users', 'Auth\UserController');
 Route::post('users/forgot-password', 'Auth\UserController@forgotPassword');
 Route::post('users/reset-password', 'Auth\UserController@resetPassword');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('auth:sanctum')->post('logout', 'Auth\UserController@logout');
     Route::apiResources([
         'galleries' => GalleryController::class,
