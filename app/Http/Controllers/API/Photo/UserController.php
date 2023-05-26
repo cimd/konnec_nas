@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 // use App\Mail\ResetPasswordMail;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
 use Auth;
-// use App\Role;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+// use App\Role;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
