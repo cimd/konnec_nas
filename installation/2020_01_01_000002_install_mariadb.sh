@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}Installing MariaDB${NC}"
 apt install mariadb-server -y
 # systemctl status mariadb
-mysql -u root -e "create user admin@localhost identified by 'konnec';"
+mysql -u root -e "create user admin@localhost identified by 'admin';"
 mysql -u root -e "GRANT ALL privileges ON *.* TO 'admin'@localhost;"
 mysql -u root -e "flush PRIVILEGES;"
 

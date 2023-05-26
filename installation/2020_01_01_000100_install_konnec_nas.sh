@@ -5,7 +5,7 @@ NC='\033[0m' # No Color
 # Create Database
 echo -e "${GREEN}Creating Database${NC}"
 mysql -u root -e "create database konnec_nas; \
-grant all privileges on konnec_nas.* to admin@localhost identified by 'konnec'; \
+grant all privileges on konnec_nas.* to admin@localhost identified by 'admin'; \
 flush privileges;"
 
 # Install Laravel

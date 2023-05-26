@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Photo;
+use App\Models\Photo\Photo;
 
 class PhotoObserver
 {
