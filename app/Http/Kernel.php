@@ -40,19 +40,19 @@ class Kernel extends HttpKernel
         ],
         'api' => [
             EnsureFrontendRequestsAreStateful::class,
-            'throttle:2000,1',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':2000,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
     /**
-     * The application's route middleware.
+     * The application's middleware aliases.
      *
-     * These middleware may be assigned to groups or used individually.
+     * Aliases may be used to conveniently assign middleware to routes and groups.
      *
      * @var array
      */
-    protected $routeMiddleware = [
+    protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         // 'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
