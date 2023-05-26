@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExifTable extends Migration
+return new class extends Migration
 {
     use SoftDeletes;
 
@@ -101,4 +101,4 @@ class CreateExifTable extends Migration
     {
         Schema::dropIfExists('exif');
     }
-}
+};
