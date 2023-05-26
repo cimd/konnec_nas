@@ -8,23 +8,23 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2||^8.1.0",
-        "doctrine/dbal": "^2.9",
+        "php": "^8.1",
+        "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "http-interop/http-factory-guzzle": "^1.2",
         "intervention/image": "^2.6",
         "krizalys/onedrive-php-sdk": "^3.1",
-        "laravel/framework": "^9.0",
-        "laravel/helpers": "^1.5",
-        "laravel/horizon": "^5.9",
+        "laravel/framework": "^10.12",
+        "laravel/helpers": "^1.6",
+        "laravel/horizon": "^5.12",
         "laravel/nova": "~4.0",
-        "laravel/octane": "^1.2",
-        "laravel/sanctum": "^2.15",
-        "laravel/scout": "^9.4",
-        "laravel/socialite": "^5.5.0",
-        "laravel/tinker": "^2.7",
+        "laravel/octane": "^1.4",
+        "laravel/sanctum": "^3.2",
+        "laravel/scout": "^9.8",
+        "laravel/socialite": "^5.6",
+        "laravel/tinker": "^2.8",
         "meilisearch/meilisearch-php": "^0.23.1",
-        "pbmedia/laravel-ffmpeg": "^8.1.0",
+        "pbmedia/laravel-ffmpeg": "^8.3",
         "pusher/pusher-php-server": "^7.0",
         "s-ichikawa/laravel-sendgrid-driver": "^4.0",
         "socialiteproviders/google": "^4.1",
@@ -33,11 +33,11 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.13",
+        "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
+        "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "files": [
@@ -86,6 +86,6 @@
             "url": "https://nova.laravel.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
