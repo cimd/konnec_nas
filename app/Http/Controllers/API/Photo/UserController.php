@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 // use App\Mail\ResetPasswordMail;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
 use Auth;
@@ -18,7 +19,7 @@ class UserController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $users = User::select(['id', 'name', 'email'])
             // ->orderBy('name')
@@ -47,7 +48,7 @@ class UserController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->tokens()->delete();
 
