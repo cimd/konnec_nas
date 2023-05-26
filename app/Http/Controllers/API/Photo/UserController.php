@@ -3,34 +3,35 @@
 namespace App\Http\Controllers\API;
 
 // use App\Mail\ResetPasswordMail;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
-// use App\Role;
 use Auth;
-use Exception;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+// use App\Role;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 // use Illuminate\Support\Carbon;
 // use Illuminate\Support\Facades\Cache;
-
 
 class UserController extends Controller
 {
     use SendsPasswordResetEmails;
 
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
-        $users =  User::select(['id', 'name', 'email'])
+        $users = User::select(['id', 'name', 'email'])
             // ->orderBy('name')
             ->get();
+
         return response()->json($users);
     }
 
     public function login(Request $request)
     {
         // dd($request->username);
-        if (Auth::attempt(['email' =>  $request->email, 'password' =>  $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // dd('yes');
             $user = Auth::user();
             // $roles = DB::table('role_user')->where('user_id', $user->id)->get();
@@ -40,26 +41,27 @@ class UserController extends Controller
             return [
                 'user' => $user->toArray(),
                 // 'roles' => $roles->toArray(),
-                'token' => $token
+                'token' => $token,
             ];
         } else {
             return response()->json('Error logging in', 400);
         }
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->tokens()->delete();
+
         return response()->json('logout', 201);
     }
 
     public function store(Request $request)
     {
         $user = User::create([
-            'name'     => $request->name,
+            'name' => $request->name,
             //   'username'     => $request->username,
             //   'configs_locations_id'     => $request->configs_locations_id,
-            'email'    => $request->email,
+            'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
         // $user
@@ -76,7 +78,7 @@ class UserController extends Controller
         return [
             'user' => $user->toArray(),
             // 'roles' => $roles->toArray(),
-            'token' => $token
+            'token' => $token,
         ];
     }
 
@@ -90,7 +92,7 @@ class UserController extends Controller
         // $this->setAndRetrieveUsersCache();
 
         return [
-            'data' => $user->toArray()
+            'data' => $user->toArray(),
         ];
     }
 
@@ -115,11 +117,12 @@ class UserController extends Controller
             ->insert([
                 'email' => $user->email,
                 'token' => $token,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
         $user->spsResetPassword($user->email, $token);
+
         return [
-            'message' => 'We have e-mailed your password reset link!'
+            'message' => 'We have e-mailed your password reset link!',
         ];
     }
 
@@ -135,6 +138,7 @@ class UserController extends Controller
         $req['email'] = $user->email;
         $req['password'] = $request->password;
         $result = $this->login(new Request($req));
+
         return $result;
     }
 
@@ -146,5 +150,4 @@ class UserController extends Controller
     //     Cache::put('users', $users);
     //     return $users;
     // }
-
 }

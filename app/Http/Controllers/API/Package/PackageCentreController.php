@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API\Package;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Artisan;
 use App\Models\Package;
+use Artisan;
+use Illuminate\Http\Request;
+
 // use App\Events\TerminalMessage;
 
 class PackageCentreController extends Controller
@@ -21,12 +22,14 @@ class PackageCentreController extends Controller
     {
         $result = Package::find($id);
         $result->fill($request->all())->save();
+
         return $result->toArray();
     }
 
     public function show($id)
     {
         $result = Package::with('dependency')->find($id);
+
         return $result->toArray();
     }
 
@@ -34,6 +37,7 @@ class PackageCentreController extends Controller
     {
         Artisan::call('command:test');
         $result = Artisan::output();
+
         return $result;
     }
 
@@ -50,6 +54,7 @@ class PackageCentreController extends Controller
                 break;
         }
         $result = true;
+
         return $result;
     }
 
@@ -61,6 +66,7 @@ class PackageCentreController extends Controller
                 break;
         }
         $result = Artisan::output();
+
         return $result;
     }
 }

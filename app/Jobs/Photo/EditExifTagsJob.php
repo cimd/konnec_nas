@@ -2,23 +2,22 @@
 
 namespace App\Jobs;
 
+use App\Models\Photo;
+use App\Services\ExifTool;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
-use App\Models\Photo;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Services\ExifTool;
 
 class EditExifTagsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $photo, $request;
+    protected $photo;
+
+    protected $request;
 
     /**
      * Create a new job instance.
@@ -33,10 +32,8 @@ class EditExifTagsJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $result = ExifTool::photo($this->photo)->edit($request->all())->save();
     }

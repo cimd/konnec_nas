@@ -3,8 +3,6 @@
 namespace App\Packages\Apache\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class listEnvs extends Command
 {
@@ -34,16 +32,15 @@ class listEnvs extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         // $path = '/var/apache2/sites-available';
         // $path = 'C:\\Users\\Ingo\\OneDrive\\Desktop';
         $result = scandir(config('global.apache_virtual_envs_path'));
         // $result = explode(' ', $list);
         $this->line($result);
+
         return $result;
     }
 }

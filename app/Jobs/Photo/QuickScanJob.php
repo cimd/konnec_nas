@@ -2,19 +2,17 @@
 
 namespace App\Jobs\Photo;
 
+use App\Models\Photo\Path;
+use App\Models\Photo\Photo;
+use App\Services\Photo\PhotoHandler;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-
-use Illuminate\Support\Facades\Storage;
-use App\Models\Photo\Photo;
-use App\Models\Photo\Path;
 // use App\Classes\PhotoHandlingClass;
-use App\Services\Photo\PhotoHandler;
-use Carbon\Carbon;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 
 class QuickScanJob implements ShouldQueue
 {
@@ -40,19 +38,17 @@ class QuickScanJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $scanTime = Carbon::now();
-        foreach($this->paths as $path) {
+        foreach ($this->paths as $path) {
             // echo($path->path . PHP_EOL);
             $files = Storage::disk('photos')->allFiles($path->path);
             // echo($files);
-            foreach($files as $file) {
+            foreach ($files as $file) {
                 // echo('hay' . PHP_EOL);
-                if (!str_contains($file, 'thumbs_')) {
+                if (! str_contains($file, 'thumbs_')) {
                     $this->readFile($file, $scanTime);
                 }
             }
@@ -66,9 +62,10 @@ class QuickScanJob implements ShouldQueue
         PhotoHandler::path($filePath)->import($scanTime)->createThumbnails();
     }
 
-    private function deletePhotosNotFound($scan_time) {
+    private function deletePhotosNotFound($scan_time)
+    {
         $notFound = Photo::where('last_scan', '!=', $scan_time)->get();
-        foreach($notFound as $photo) {
+        foreach ($notFound as $photo) {
             $photo->delete();
         }
     }

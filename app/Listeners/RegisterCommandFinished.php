@@ -2,9 +2,6 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-
 class RegisterCommandFinished
 {
     /**
@@ -19,11 +16,8 @@ class RegisterCommandFinished
 
     /**
      * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
      */
-    public function handle($event)
+    public function handle(object $event): void
     {
         // dd($event);
     }

@@ -2,12 +2,12 @@
 
 namespace App\Packages\Plex\Commands;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Models\Package;
-class update extends Command
+use Illuminate\Console\Command;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
+class update extends Command
 {
     /**
      * The name and signature of the console command.
@@ -35,28 +35,27 @@ class update extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $package = Package::where('name', 'Plex')->first();
-        
+
         $processDownload = new Process(['wget', $package->newest_version_url]);
         $processDownload->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
         $process = new Process(['sudo', 'dpkg ', '-i', $package->newest_version_filename]);
         $process->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
         $result = $process->getOutput();
         $this->line($result);
+
         return $result;
     }
 }

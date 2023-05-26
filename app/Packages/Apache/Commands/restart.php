@@ -2,10 +2,10 @@
 
 namespace App\Packages\Apache\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\ApacheRestartJob;
-class restart extends Command
+use Illuminate\Console\Command;
 
+class restart extends Command
 {
     /**
      * The name and signature of the console command.
@@ -33,12 +33,11 @@ class restart extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         ApacheRestartJob::dispatchAfterResponse();
+
         return true;
     }
 }

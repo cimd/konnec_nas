@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
+use App\Listeners\RegisterCommandFinished;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-
-use Illuminate\Console\Events\CommandFinished;
-use App\Listeners\RegisterCommandFinished;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,17 +21,23 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         CommandFinished::class => [
-            RegisterCommandFinished::class
-        ]
+            RegisterCommandFinished::class,
+        ],
     ];
 
     /**
      * Register any events for your application.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
+    }
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     */
+    public function shouldDiscoverEvents(): bool
+    {
+        return false;
     }
 }

@@ -2,14 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Services\ExifTool;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
-use App\Services\ExifTool;
 
 class DeleteOriginalsJob implements ShouldQueue
 {
@@ -29,10 +27,8 @@ class DeleteOriginalsJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         ExifTool::deleteOriginals($path);
     }

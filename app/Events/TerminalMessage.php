@@ -7,16 +7,20 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 // use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 // use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
-// use App\Models\Auth\User;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Foundation\Events\Dispatchable;
+// use App\Models\Auth\User;
+use Illuminate\Queue\SerializesModels;
+
 // use Illuminate\Support\Facades\Log;
 
 class TerminalMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $user, $message;
+
+    public $user;
+
+    public $message;
 
     /**
      * Create a new event instance.
@@ -34,9 +38,9 @@ class TerminalMessage implements ShouldBroadcastNow
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
-        return new PrivateChannel('user.' . $this->user->id);
+        return new PrivateChannel('user.'.$this->user->id);
     }
 
     public function broadcastAs()

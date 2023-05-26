@@ -3,8 +3,8 @@
 namespace App\Packages\Plex\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class remove extends Command
 {
@@ -34,19 +34,18 @@ class remove extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $process = new Process(['sudo', 'dpkg', '-r', 'plexmediaserver']);
         $process->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
         $result = $process->getOutput();
         $this->line($result);
+
         return $result;
     }
 }

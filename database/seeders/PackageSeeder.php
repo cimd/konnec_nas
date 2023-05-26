@@ -2,18 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Package;
+use Illuminate\Database\Seeder;
 
 class PackageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $data = [
             [
@@ -29,7 +26,7 @@ class PackageSeeder extends Seeder
                 'newest_version_type' => null,
                 'has_config' => true,
                 'can_remove' => false,
-                'installation_status' => 'Installed'
+                'installation_status' => 'Installed',
             ],
             [
                 'name' => 'MariaDB',
@@ -44,7 +41,7 @@ class PackageSeeder extends Seeder
                 'newest_version_type' => null,
                 'has_config' => true,
                 'can_remove' => false,
-                'installation_status' => 'Installed'
+                'installation_status' => 'Installed',
             ],
             [
                 'name' => 'PHP8',
@@ -59,7 +56,7 @@ class PackageSeeder extends Seeder
                 'newest_version_type' => null,
                 'has_config' => true,
                 'can_remove' => false,
-                'installation_status' => 'Installed'
+                'installation_status' => 'Installed',
             ],
             [
                 'name' => 'Redis',
@@ -74,7 +71,7 @@ class PackageSeeder extends Seeder
                 'newest_version_type' => null,
                 'has_config' => true,
                 'can_remove' => false,
-                'installation_status' => 'Installed'
+                'installation_status' => 'Installed',
             ],
             [
                 'name' => 'Lollypop',
@@ -89,7 +86,7 @@ class PackageSeeder extends Seeder
                 'newest_version_type' => null,
                 'has_config' => false,
                 'can_remove' => true,
-                'installation_status' => null
+                'installation_status' => null,
             ],
             [
                 'name' => 'phpMyAdmin',
@@ -105,8 +102,8 @@ class PackageSeeder extends Seeder
                 'has_config' => false,
                 // 'config_route' => '/phpmyadmin',
                 'can_remove' => true,
-                'installation_status' => 'Installed'
-            ],  
+                'installation_status' => 'Installed',
+            ],
             [
                 'name' => 'Plex',
                 'icon' => '',
@@ -121,23 +118,23 @@ class PackageSeeder extends Seeder
                 'has_config' => false,
                 // 'config_route' => '/phpmyadmin',
                 'can_remove' => true,
-                'installation_status' => ''
-            ],  
+                'installation_status' => '',
+            ],
             // [
-                // 'name' => '',
-                // 'icon' => '',
-                // 'description' => '',
-                // 'developer' => '',
-                // 'developer_link' => '',
-                // 'category' => '',
-                // 'installed_version' => '',
-                // 'installed_version_type' => '',
-                // 'newest_version' => '',
-                // 'newest_version_type' => '',
-                // 'has_config' => false,
-                // 'config_route' => '/phpmyadmin',
-                // 'can_remove' => true,
-                // 'installation_status' => ''
+            // 'name' => '',
+            // 'icon' => '',
+            // 'description' => '',
+            // 'developer' => '',
+            // 'developer_link' => '',
+            // 'category' => '',
+            // 'installed_version' => '',
+            // 'installed_version_type' => '',
+            // 'newest_version' => '',
+            // 'newest_version_type' => '',
+            // 'has_config' => false,
+            // 'config_route' => '/phpmyadmin',
+            // 'can_remove' => true,
+            // 'installation_status' => ''
             // ],
         ];
         Package::insert($data);

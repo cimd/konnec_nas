@@ -3,11 +3,10 @@
 namespace App\Console\Commands\App;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class AppTest extends Command
-
 {
     /**
      * The name and signature of the console command.
@@ -35,17 +34,16 @@ class AppTest extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $process = new Process(['ls']);
         $process->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
+
         return true;
     }
 }

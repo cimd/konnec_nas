@@ -1,17 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\Package\ApacheController;
+use App\Http\Controllers\API\Package\PackageCentreController;
+use App\Http\Controllers\API\Photo\GalleryController;
+use App\Http\Controllers\API\Photo\PathController;
+use App\Http\Controllers\API\Photo\PhotoController;
+use App\Http\Controllers\API\Shell\ShellCommandController;
+use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Http\Controllers\API\Package\PackageCentreController;
-use App\Http\Controllers\API\Package\ApacheController;
-use App\Http\Controllers\API\Shell\ShellCommandController;
-
-use App\Http\Controllers\API\Photo\GalleryController;
-use App\Http\Controllers\API\Photo\PhotoController;
-use App\Http\Controllers\API\Photo\PathController;
-use App\Http\Controllers\API\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,15 +20,15 @@ use App\Http\Controllers\API\Auth\UserController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', 'Auth\UserController@user');
+Route::middleware('auth:api')->get('/user', [Auth\UserController::class, 'user']);
 
-Route::post('login', 'Auth\UserController@login');
-Route::apiResource('users', 'Auth\UserController');
-Route::post('users/forgot-password', 'Auth\UserController@forgotPassword');
-Route::post('users/reset-password', 'Auth\UserController@resetPassword');
+Route::post('login', [Auth\UserController::class, 'login']);
+Route::apiResource('users', Auth\UserController::class);
+Route::post('users/forgot-password', [Auth\UserController::class, 'forgotPassword']);
+Route::post('users/reset-password', [Auth\UserController::class, 'resetPassword']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::middleware('auth:sanctum')->post('logout', 'Auth\UserController@logout');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware('auth:sanctum')->post('logout', [Auth\UserController::class, 'logout']);
     Route::apiResources([
         'galleries' => GalleryController::class,
         'photos' => PhotoController::class,
@@ -54,8 +51,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::post('shell/run', [ShellCommandController::class, 'run']);
 });
-
-
-
 
 // });

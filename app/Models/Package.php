@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Package extends Model
 {
     use SoftDeletes;
-    protected $table = "pkg_packages";
+
+    protected $table = 'pkg_packages';
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     protected $casts = [
         'category' => 'array',
         'has_config' => 'boolean',
-        'can_remove' => 'boolean'
+        'can_remove' => 'boolean',
     ];
 
     public function scopePackage($query, $name)
     {
         $query->where('name', $name);
+
         return $query;
     }
 
@@ -28,6 +31,7 @@ class Package extends Model
         $result = $query->first();
         $result->installed_version = $version;
         $result->save();
+
         return $result;
     }
 
@@ -36,6 +40,7 @@ class Package extends Model
         $result = $query->first();
         $result->installed_version = null;
         $result->save();
+
         return $result;
     }
 

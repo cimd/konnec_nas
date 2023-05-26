@@ -2,8 +2,8 @@
 
 namespace App\Packages\Photos\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\Photo\QuickScanJob;
+use Illuminate\Console\Command;
 
 class QuickScan extends Command
 {
@@ -33,12 +33,11 @@ class QuickScan extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         QuickScanJob::dispatch();
+
         return 0;
     }
 }

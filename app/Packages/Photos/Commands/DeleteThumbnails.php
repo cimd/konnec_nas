@@ -2,8 +2,8 @@
 
 namespace App\Packages\Photos\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\DeleteThumbnailsJob;
+use Illuminate\Console\Command;
 
 class DeleteThumbnails extends Command
 {
@@ -33,12 +33,11 @@ class DeleteThumbnails extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         DeleteThumbnailsJob::dispatch();
+
         return 0;
     }
 }

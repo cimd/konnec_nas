@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
-use App\Models\Photo\Photo;
-use App\Models\Photo\Exif;
-use Illuminate\Http\Request;
-
-use App\Jobs\Photo\RenamePhotoJob;
-use App\Jobs\Photo\ReadExifTagsJob;
-use App\Jobs\Photo\EditExifTagsJob;
 use App\Jobs\Photo\DeleteOriginalsJob;
+use App\Jobs\Photo\EditExifTagsJob;
+use App\Jobs\Photo\RenamePhotoJob;
+use App\Models\Photo\Photo;
+use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
@@ -22,13 +19,13 @@ class PhotoController extends Controller
     public function index(Request $request)
     {
         $photos = Photo::filter($request->query)->with('exif')->orderBy('date_taken', 'Desc')->paginate(25);
+
         return $photos;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -39,25 +36,23 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function show(Photo $photo)
     {
         $previous = Photo::where('date_taken', '<=', $photo->date_taken)->where('id', '!=', $photo->id)->orderBy('date_taken', 'DESC')->first();
         $next = Photo::where('date_taken', '>=', $photo->date_taken)->where('id', '!=', $photo->id)->orderBy('date_taken', 'ASC')->first();
+
         return [
             'data' => $photo->load('exif')->toArray(),
             'previous' => $previous ? $previous->toArray() : null,
-            'next' => $next ? $next->toArray() : null
+            'next' => $next ? $next->toArray() : null,
         ];
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Photo $photo)
@@ -66,21 +61,21 @@ class PhotoController extends Controller
         $photo->save();
 
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Photo $photo)
     {
         $photo->delete();
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 
@@ -90,8 +85,9 @@ class PhotoController extends Controller
         UpdateExifModelJob::dispatch($photo);
 
         $photo = Photo::find($photo->id);
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 
@@ -101,8 +97,9 @@ class PhotoController extends Controller
         UpdateExifModelJob::dispatch($photo);
         // DeleteOriginalsJob::dispatch();
         $photo = Photo::find($photo->id);
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 }

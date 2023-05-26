@@ -2,7 +2,10 @@
     "name": "nas/konnec",
     "type": "project",
     "description": "Konnec NAS",
-    "keywords": ["nas", "laravel"],
+    "keywords": [
+        "nas",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -12,16 +15,16 @@
         "intervention/image": "^2.7",
         "konnec/vue-eloquent-api": "^0.3.0",
         "krizalys/onedrive-php-sdk": "^3.1",
-        "laravel/framework": "^10.4",
+        "laravel/framework": "^10.12",
         "laravel/helpers": "^1.6",
         "laravel/horizon": "^5.14",
         "laravel/octane": "^1.4",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^9.8",
-        "laravel/socialite": "^5.5",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "meilisearch/meilisearch-php": "^1.0",
-        "pbmedia/laravel-ffmpeg": "^8.1",
+        "pbmedia/laravel-ffmpeg": "^8.3",
         "pusher/pusher-php-server": "^7.2",
         "sammyjo20/saloon": "^2.0",
         "s-ichikawa/laravel-sendgrid-driver": "^4.0",
@@ -96,8 +99,7 @@
             "pestphp/pest-plugin": true
         }
     },
-    "repositories": [
-    ],
+    "repositories": [],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "extra": {

@@ -8,55 +8,40 @@ class PhotoObserver
 {
     /**
      * Handle the Photo "created" event.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return void
      */
-    public function created(Photo $photo)
+    public function created(Photo $photo): void
     {
         //
     }
 
     /**
      * Handle the Photo "updated" event.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return void
      */
-    public function updated(Photo $photo)
+    public function updated(Photo $photo): void
     {
         //
     }
 
     /**
      * Handle the Photo "deleted" event.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return void
      */
-    public function deleted(Photo $photo)
+    public function deleted(Photo $photo): void
     {
         //
     }
 
     /**
      * Handle the Photo "restored" event.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return void
      */
-    public function restored(Photo $photo)
+    public function restored(Photo $photo): void
     {
         //
     }
 
     /**
      * Handle the Photo "force deleted" event.
-     *
-     * @param  \App\Models\Photo  $photo
-     * @return void
      */
-    public function forceDeleted(Photo $photo)
+    public function forceDeleted(Photo $photo): void
     {
         //
     }
