@@ -37,7 +37,7 @@ class AppTest extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $process = new Process(['ls']);
         $process->run();

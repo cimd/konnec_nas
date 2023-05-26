@@ -35,7 +35,7 @@ class EditExifTagsJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $result = ExifTool::photo($this->photo)->edit($request->all())->save();
     }

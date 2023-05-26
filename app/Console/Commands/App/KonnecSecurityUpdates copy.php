@@ -37,7 +37,7 @@ class KonnecSecurityUpdates extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $process = new Process(['unattended-upgrades']);
         $process->run();

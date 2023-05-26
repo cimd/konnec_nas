@@ -41,7 +41,7 @@ class QuickScanJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $scanTime = Carbon::now();
         foreach ($this->paths as $path) {

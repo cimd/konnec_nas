@@ -11,7 +11,7 @@ class PkgPackagesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         \DB::table('pkg_packages')->delete();
 

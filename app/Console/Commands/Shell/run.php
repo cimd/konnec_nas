@@ -37,7 +37,7 @@ class run extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         // dd($this->argument('params'));
         $cmds = explode(' ', $this->argument('params'));

@@ -33,7 +33,7 @@ class UpdateExifModelJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $tags = ExifTool::photo($this->photo)->tags();
         $exif = Exif::updateOrCreate(

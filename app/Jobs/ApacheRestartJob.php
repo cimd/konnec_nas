@@ -28,7 +28,7 @@ class ApacheRestartJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $process = new Process(['/etc/init.d/apache2', 'restart']);
         $process->run();

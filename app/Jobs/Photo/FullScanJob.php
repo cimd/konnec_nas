@@ -30,7 +30,7 @@ class FullScanJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Photo::chunk(200, function ($photos) {
             foreach ($photos as $photo) {

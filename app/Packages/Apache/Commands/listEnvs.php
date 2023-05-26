@@ -35,7 +35,7 @@ class listEnvs extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         // $path = '/var/apache2/sites-available';
         // $path = 'C:\\Users\\Ingo\\OneDrive\\Desktop';

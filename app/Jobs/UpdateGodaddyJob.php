@@ -37,7 +37,7 @@ class UpdateGodaddyJob
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $ip = $this->getExternalIpAddress();
         foreach ($this->subdomains as $record) {
