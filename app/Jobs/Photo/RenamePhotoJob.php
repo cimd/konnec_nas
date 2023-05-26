@@ -37,7 +37,7 @@ class RenamePhotoJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $newPath = $this->newPath.$this->newFilename;
         PhotoHandler::photo($this->photo)->rename($newPath);

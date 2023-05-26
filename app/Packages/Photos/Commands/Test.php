@@ -39,7 +39,7 @@ class Test extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $photo = Photo::find(1);
         ExifTool::photo($photo)->tags();

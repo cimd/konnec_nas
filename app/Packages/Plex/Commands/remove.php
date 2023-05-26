@@ -37,7 +37,7 @@ class remove extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $process = new Process(['sudo', 'dpkg', '-r', 'plexmediaserver']);
         $process->run();

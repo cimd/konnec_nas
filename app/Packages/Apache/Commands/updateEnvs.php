@@ -35,7 +35,7 @@ class updateEnvs extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         // $path = '/var/apache2/sites-available/';
         // a2enconf php8.0-fpm
