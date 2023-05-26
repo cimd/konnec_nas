@@ -2,16 +2,15 @@
 
 namespace App\Traits;
 
-trait Filterable {
-
+trait Filterable
+{
     public function scopeFilter($query, $requestQuery)
     {
-        if(!$requestQuery) {
+        if (! $requestQuery) {
             return $query;
         }
 
         foreach ($requestQuery as $field => $value) {
-
             if (($field != 'page') && array_key_exists($field, $this->filters) && $value != null) {
                 switch ($this->filters[$field]) {
                     case 'single':
@@ -21,15 +20,14 @@ trait Filterable {
                         $query = $query->whereIn($field, $value);
                         break;
                     case 'like':
-                        $query = $query->where($field, 'LIKE',  "%$value%");
+                        $query = $query->where($field, 'LIKE', "%$value%");
                         break;
                     default:
                         break;
                 }
             }
-
         }
+
         return $query;
     }
-
 }

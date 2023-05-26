@@ -10,5 +10,6 @@ class Path extends Model
 {
     // use HasFactory;
     use SoftDeletes;
+
     protected $guarded = ['created_at', 'updated_at'];
 }

@@ -10,6 +10,7 @@ class Exif extends Model
 {
     // use HasFactory;
     use SoftDeletes;
+
     protected $guarded = ['created_at', 'updated_at'];
     // protected $fillable = [
     //     'DateTimeOriginal',
@@ -27,7 +28,8 @@ class Exif extends Model
         'Rating' => 'integer',
     ];
 
-    public function photo() {
+    public function photo()
+    {
         return $this->belongsTo(Photo::class);
     }
 }

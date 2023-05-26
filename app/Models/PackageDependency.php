@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PackageDependency extends Model
 {
     use SoftDeletes;
-    protected $table = "pkg_packages";
+
+    protected $table = 'pkg_packages';
+
     protected $guarded = ['created_at', 'updated_at'];
+
     protected $casts = [
-        'dependencies' => 'array'
+        'dependencies' => 'array',
     ];
 
     public function package()

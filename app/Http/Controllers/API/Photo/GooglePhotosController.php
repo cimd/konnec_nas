@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 // use PulkitJalan\Google\Facades\Google;
 
 // use Revolution\Google\Photos\Facades\Photos;
 
-
 // use Google\Auth\Credentials\UserRefreshCredentials;
 // use Google\Photos\Library\V1\PhotosLibraryClient;
 // use Google\Photos\Library\V1\PhotosLibraryResourceFactory;
-
 
 class GooglePhotosController extends Controller
 {
@@ -25,13 +22,11 @@ class GooglePhotosController extends Controller
      */
     public function index(Request $request)
     {
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,13 +43,13 @@ class GooglePhotosController extends Controller
     public function show(Photo $photo)
     {
         $photo = Photo::filter($request)->with('exif')->orderBy('date_taken', 'Desc')->paginate(1);
+
         return $photo;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
@@ -64,8 +59,8 @@ class GooglePhotosController extends Controller
         $photo->save();
 
         return [
-            'data' => $photo->toArray()
-        ]; 
+            'data' => $photo->toArray(),
+        ];
     }
 
     /**
@@ -77,8 +72,9 @@ class GooglePhotosController extends Controller
     public function destroy(Photo $photo)
     {
         $photo->delete();
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 
@@ -88,8 +84,9 @@ class GooglePhotosController extends Controller
         UpdateExifModelJob::dispatch($photo);
 
         $photo = Photo::find($photo->id);
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 
@@ -99,8 +96,9 @@ class GooglePhotosController extends Controller
         UpdateExifModelJob::dispatch($photo);
         // DeleteOriginalsJob::dispatch();
         $photo = Photo::find($photo->id);
+
         return [
-            'data' => $photo->toArray()
+            'data' => $photo->toArray(),
         ];
     }
 }
