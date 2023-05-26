@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Photo;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class GalleryCollection extends ResourceCollection
@@ -12,7 +13,7 @@ class GalleryCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'data' => $this->collection->groupBy('year_month'),
