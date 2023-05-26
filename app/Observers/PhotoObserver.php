@@ -8,8 +8,6 @@ class PhotoObserver
 {
     /**
      * Handle the Photo "created" event.
-     *
-     * @return void
      */
     public function created(Photo $photo): void
     {
@@ -18,8 +16,6 @@ class PhotoObserver
 
     /**
      * Handle the Photo "updated" event.
-     *
-     * @return void
      */
     public function updated(Photo $photo): void
     {
@@ -28,8 +24,6 @@ class PhotoObserver
 
     /**
      * Handle the Photo "deleted" event.
-     *
-     * @return void
      */
     public function deleted(Photo $photo): void
     {
@@ -38,8 +32,6 @@ class PhotoObserver
 
     /**
      * Handle the Photo "restored" event.
-     *
-     * @return void
      */
     public function restored(Photo $photo): void
     {
@@ -48,8 +40,6 @@ class PhotoObserver
 
     /**
      * Handle the Photo "force deleted" event.
-     *
-     * @return void
      */
     public function forceDeleted(Photo $photo): void
     {

@@ -36,7 +36,6 @@ class PhotoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function show(Photo $photo)
@@ -54,7 +53,6 @@ class PhotoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Photo $photo)
@@ -70,7 +68,6 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Photo $photo)
