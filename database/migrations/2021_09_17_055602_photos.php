@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Photos extends Migration
 {
     use SoftDeletes;
+
     /**
      * Run the migrations.
      *
@@ -28,7 +29,7 @@ class Photos extends Migration
             // $table->string('rating')->index()->nullable();
             $table->string('albums')->index()->default('[]')->nullable();
             // $table->text('tags')->index()->default('[]')->nullable();
-            
+
             $table->timestamp('last_scan')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();

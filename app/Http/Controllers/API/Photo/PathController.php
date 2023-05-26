@@ -16,8 +16,9 @@ class PathController extends Controller
     public function index()
     {
         $paths = Path::orderBy('path')->get();
+
         return [
-            'data' => $paths->toArray()
+            'data' => $paths->toArray(),
         ];
     }
 
@@ -34,7 +35,6 @@ class PathController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,15 +42,15 @@ class PathController extends Controller
         $path = new Path;
         $path->fill($request->all());
         $path->save();
+
         return [
-            'data' => $path->toArray()
+            'data' => $path->toArray(),
         ];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Path  $path
      * @return \Illuminate\Http\Response
      */
     public function show(Path $path)
@@ -61,7 +61,6 @@ class PathController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Path  $path
      * @return \Illuminate\Http\Response
      */
     public function edit(Path $path)
@@ -72,8 +71,6 @@ class PathController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Path  $path
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Path $path)
@@ -82,21 +79,21 @@ class PathController extends Controller
         $path->save();
 
         return [
-            'data' => $path->toArray()
+            'data' => $path->toArray(),
         ];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Path  $path
      * @return \Illuminate\Http\Response
      */
     public function destroy(Path $path)
     {
         $path->delete();
+
         return [
-            'data' => $path->toArray()
+            'data' => $path->toArray(),
         ];
     }
 }

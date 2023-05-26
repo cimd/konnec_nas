@@ -1,17 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\Package\ApacheController;
+use App\Http\Controllers\API\Package\PackageCentreController;
+use App\Http\Controllers\API\Photo\GalleryController;
+use App\Http\Controllers\API\Photo\PathController;
+use App\Http\Controllers\API\Photo\PhotoController;
+use App\Http\Controllers\API\Shell\ShellCommandController;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Http\Controllers\API\Package\PackageCentreController;
-use App\Http\Controllers\API\Package\ApacheController;
-use App\Http\Controllers\API\Shell\ShellCommandController;
-
-use App\Http\Controllers\API\Photo\GalleryController;
-use App\Http\Controllers\API\Photo\PhotoController;
-use App\Http\Controllers\API\Photo\PathController;
-use App\Http\Controllers\API\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,8 +50,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::post('shell/run', [ShellCommandController::class, 'run']);
 });
-
-
-
 
 // });

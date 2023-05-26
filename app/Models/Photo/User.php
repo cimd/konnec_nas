@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 // use Revolution\Google\Photos\Traits\PhotosLibrary;
 
 class User extends Authenticatable
@@ -29,7 +29,7 @@ class User extends Authenticatable
         'avatar_original',
         'access_token',
         'refresh_token',
-        'expires_in'
+        'expires_in',
     ];
 
     /**
@@ -54,10 +54,10 @@ class User extends Authenticatable
     protected function photosAccessToken()
     {
         return [
-            'access_token'  => $this->access_token,
+            'access_token' => $this->access_token,
             'refresh_token' => $this->refresh_token,
-            'expires_in'    => $this->expires_in,
-            'created'       => $this->updated_at->getTimestamp(),
+            'expires_in' => $this->expires_in,
+            'created' => $this->updated_at->getTimestamp(),
         ];
     }
 }

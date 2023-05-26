@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\API\Package;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Artisan;
-use App\Models\Package;
-use App\Jobs\ApacheRestartJob;
+use Illuminate\Http\Request;
 
 class ApacheController extends Controller
 {
@@ -24,26 +22,28 @@ class ApacheController extends Controller
         // $result = Artisan::output();
 
         // $path = '/var/apache2/sites-available';
-        // $path = 
+        // $path =
         $result = scandir($this->path);
 
         // $data = explode(' ', $result);
         return [
-            'data' => $result
+            'data' => $result,
         ];
     }
 
     public function getFile(Request $request)
     {
-        $file = file_get_contents($this->path . $request->filename);
+        $file = file_get_contents($this->path.$request->filename);
+
         return $file;
     }
 
     public function updateFile(Request $request)
     {
-        $file = file_put_contents($this->path . $request->filename, $request->data);
-        Artisan::call('apache:update-envs ' . $request->filename);
+        $file = file_put_contents($this->path.$request->filename, $request->data);
+        Artisan::call('apache:update-envs '.$request->filename);
         Artisan::call('apache:restart');
+
         return $file;
     }
 }

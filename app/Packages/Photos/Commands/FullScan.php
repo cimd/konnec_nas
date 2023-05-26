@@ -2,8 +2,8 @@
 
 namespace App\Packages\Photos\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\Photo\FullScanJob;
+use Illuminate\Console\Command;
 
 class FullScan extends Command
 {
@@ -40,6 +40,7 @@ class FullScan extends Command
     public function handle()
     {
         FullScanJob::dispatch();
+
         return 0;
     }
 }

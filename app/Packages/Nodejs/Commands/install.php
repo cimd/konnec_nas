@@ -2,13 +2,12 @@
 
 namespace App\Packages\Nodejs\Commands;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Models\Package;
+use Illuminate\Console\Command;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class install extends Command
-
 {
     /**
      * The name and signature of the console command.
@@ -44,7 +43,7 @@ class install extends Command
         // $package = Package::where('name', 'Webmin')->first();
         echo dirname(__FILE__);
 
-        $process = new Process([dirname(__FILE__) . '/install.sh']);
+        $process = new Process([dirname(__FILE__).'/install.sh']);
         $process->setTimeout(120);
         $process->start();
 
@@ -52,7 +51,7 @@ class install extends Command
             echo $data;
         }
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 

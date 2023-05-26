@@ -1,46 +1,59 @@
 <?php
+
 namespace App\Services\Photo;
+
 use App\Models\Photo\Photo;
 use Illuminate\Support\Facades\Storage;
 
-class ExifTool {
-    private static $photo, $exifToolParams;
-    protected static $readTags, $editTags;
+class ExifTool
+{
+    private static $photo;
 
-    public function __construct() {}
+    private static $exifToolParams;
 
-    public static function photo(Photo $photo) {
+    protected static $readTags;
+
+    protected static $editTags;
+
+    public function __construct()
+    {
+    }
+
+    public static function photo(Photo $photo)
+    {
         self::$photo = $photo;
+
         return new self;
     }
 
-    public static function tags() {
+    public static function tags()
+    {
         // self::$photo = $photo;
         // Default tags for reading
         $defaultTags = [
-            "aperturevalue",
-            "brightnessvalue",
-            "datetimeoriginal",
-            "exifimagelength",
-            "exifimagewidth",
-            "exposuretime",
-            "filedatetime",
-            "filename",
-            "filesize",
-            "filetype",
-            "focallength",
-            "focallengthin35mmfilm",
-            "isospeedratings",
-            "make",
-            "model",
-            "orientation",
-            "rating",
-            "shutterspeedvalue",
-            "sectionsfound",
-            "xpcomment",
-            "xpkeywords",
-            "xpsubject",
-            "xptitle"
+            'aperturevalue',
+            'brightnessvalue',
+            'datetimeoriginal',
+            'exifimagelength',
+            'exifimagewidth',
+            'exposuretime',
+            'filedatetime',
+            'filename',
+            'filesize',
+            'filetype',
+            'focallength',
+            'focallengthin35mmfilm',
+            'isospeedratings',
+            'make',
+            'model',
+            'orientation',
+            'rating',
+            'shutterspeedvalue',
+            'sectionsfound',
+            'xpcomment',
+            'xpkeywords',
+            'xpsubject',
+            'xptitle',
         ];
 
         // Set default reading params
@@ -51,17 +64,19 @@ class ExifTool {
         // echo($params . PHP_EOL);
 
         // Run Exif Tool
-        $photoPath = Storage::disk('photos')->path(self::$photo->path . DIRECTORY_SEPARATOR . self::$photo->filename);
+        $photoPath = Storage::disk('photos')->path(self::$photo->path.DIRECTORY_SEPARATOR.self::$photo->filename);
         $rawResult = shell_exec("exiftool -T {$params} {$photoPath}");
         // echo($rawResult . PHP_EOL);
 
         // Convert String to Array
         $explodedStr = preg_split('/\t+/', $rawResult);
-        $result = array();
+        $result = [];
         $counter = 0;
-        foreach($defaultTags as $tag) {
+        foreach ($defaultTags as $tag) {
             $result[$tag] = $explodedStr[$counter];
-            if ($result[$tag] == "-") $result[$tag] = null;
+            if ($result[$tag] == '-') {
+                $result[$tag] = null;
+            }
             $counter++;
         }
         // echo($result['filesize'] . PHP_EOL);
@@ -77,7 +92,7 @@ class ExifTool {
 
     public static function edit($tags)
     {
-        foreach($tags as $key => $value) {
+        foreach ($tags as $key => $value) {
             self::$exifToolParams .= " -{$key}={$value}";
         }
         // echo(self::$photo->path . PHP_EOL);
@@ -96,8 +111,8 @@ class ExifTool {
         // return new self;
     }
 
-    public static function deleteOriginals($path) {
+    public static function deleteOriginals($path)
+    {
         $result = shell_exec("exiftool -r -q -delete_original! {$path}");
     }
-
 }

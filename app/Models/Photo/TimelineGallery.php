@@ -10,9 +10,11 @@ class TimelineGallery extends Model
 {
     // use HasFactory;
     use SoftDeletes;
+
     protected $guarded = ['created_at', 'updated_at'];
 
-    public function exif() {
+    public function exif()
+    {
         return $this->hasOne(Exif::class);
     }
 

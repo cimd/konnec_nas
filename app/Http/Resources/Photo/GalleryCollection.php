@@ -16,7 +16,7 @@ class GalleryCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection->groupBy('year_month'),
-            'timeline' => $this->collection->sortByDesc('year_month')->pluck('year_month')->unique()->values()
+            'timeline' => $this->collection->sortByDesc('year_month')->pluck('year_month')->unique()->values(),
         ];
     }
 }

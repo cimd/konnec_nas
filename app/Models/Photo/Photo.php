@@ -2,43 +2,51 @@
 
 namespace App\Models\Photo;
 
+use App\Traits\Filterable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
-use App\Traits\Filterable;
 
 class Photo extends Model
 {
     // use HasFactory;
     use SoftDeletes, Filterable;
+
     protected $guarded = ['created_at', 'updated_at'];
+
     protected $casts = [
         'date_taken' => 'date',
     ];
+
     protected $appends = [
         'year',
-        'month'
+        'month',
     ];
 
-    public function exif() {
+    public function exif()
+    {
         return $this->hasOne(Exif::class);
     }
 
-    public function getYearAttribute ()
+    public function getYearAttribute()
     {
-        if($this->date_taken) {
+        if ($this->date_taken) {
             $date = new Carbon($this->date_taken);
+
             return $date->year;
         }
+
         return null;
     }
 
-        public function getMonthAttribute ()
-    {
-        if($this->date_taken) {
-            $date = new Carbon($this->date_taken);
-            return $date->month;
+        public function getMonthAttribute()
+        {
+            if ($this->date_taken) {
+                $date = new Carbon($this->date_taken);
+
+                return $date->month;
+            }
+
+            return null;
         }
-        return null;
-    }
 }

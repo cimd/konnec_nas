@@ -3,10 +3,8 @@
 namespace App\Packages\Apache\Commands;
 
 use Illuminate\Console\Command;
-use App\Jobs\ApacheRestartJob;
 
 class updateEnvs extends Command
-
 {
     /**
      * The name and signature of the console command.
@@ -41,10 +39,10 @@ class updateEnvs extends Command
     {
         // $path = '/var/apache2/sites-available/';
         // a2enconf php8.0-fpm
-        $process = new Process(['sudo', 'a2enconf', config('global.apache_virtual_envs_path') . $this->argument('filename')]);
+        $process = new Process(['sudo', 'a2enconf', config('global.apache_virtual_envs_path').$this->argument('filename')]);
         $process->run();
         // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
         // $result = $process->getOutput();

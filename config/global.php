@@ -7,7 +7,4 @@ return [
 
     'hosts_path' => '/etc/',
 
-    
-
-
 ];

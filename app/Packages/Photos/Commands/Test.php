@@ -2,13 +2,14 @@
 
 namespace App\Packages\Photos\Commands;
 
-use Illuminate\Console\Command;
-use App\Services\ExifTool;
 use App\Models\Photo;
+use App\Services\ExifTool;
+use Illuminate\Console\Command;
 
 class Test extends Command
 {
     private $paths;
+
     /**
      * The name and signature of the console command.
      *
@@ -42,6 +43,7 @@ class Test extends Command
     {
         $photo = Photo::find(1);
         ExifTool::photo($photo)->tags();
+
         return 0;
     }
 }
