@@ -39,7 +39,7 @@ systemctl reload apache2
 #Supervisor
 echo -e "${GREEN}Configuring Supervisor${NC}"
 cp /var/www/konnec_nas/setup/workers/horizon-worker.conf /etc/supervisor/conf.d
-# cp /var/www/konnec_nas/setup/workers/octane-worker.conf /etc/supervisor/conf.d
+cp /var/www/konnec_nas/setup/workers/octane-worker.conf /etc/supervisor/conf.d
 
 supervisorctl reread
 supervisorctl update
