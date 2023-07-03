@@ -7,9 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         Broadcast::routes([
@@ -18,5 +15,18 @@ class BroadcastServiceProvider extends ServiceProvider
         ]);
 
         require base_path('routes/channels.php');
+
+        $this->loadModuleChannels();
+    }
+
+    private function loadModuleChannels(): void
+    {
+        $channels = collect(
+            glob(base_path('modules/*/Routes/*.channels.php'))
+        );
+
+        $channels->each(function ($item) {
+            require $item;
+        });
     }
 }

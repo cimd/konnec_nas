@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected $apiNamespace = 'App\Http\Controllers\API';
+    //    protected $apiNamespace = null;
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(): void
     {
         Route::middleware('web')
-             ->group(base_path('routes/web.php'));
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -50,7 +50,23 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes(): void
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+//
+            ->group(base_path('routes/api.php'));
+
+        $this->loadModuleRoutes();
+    }
+
+    private function loadModuleRoutes(): void
+    {
+        $routeFiles = collect(
+            glob(base_path('modules/*/Routes/*.api.php'))
+        );
+
+        $routeFiles->each(function ($item) {
+            Route::prefix('api')
+                ->middleware('api')
+                ->group($item);
+        });
     }
 }
