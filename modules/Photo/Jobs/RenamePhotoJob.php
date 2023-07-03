@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Models\Jobs;
 
-use App\Models\Photo;
 use App\Services\PhotoHandler;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

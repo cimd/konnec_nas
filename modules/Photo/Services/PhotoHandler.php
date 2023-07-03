@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services\Photo;
+namespace App\Models\Services;
 
 use App\Models\Photo\Photo;
 use Carbon\Carbon;
-use FFMpeg;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Image;

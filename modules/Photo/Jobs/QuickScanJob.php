@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Jobs\Photo;
+namespace App\Models\Jobs;
 
 use App\Models\Photo\Path;
 use App\Models\Photo\Photo;
-use App\Services\Photo\PhotoHandler;
+use App\Models\Services\PhotoHandler;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-// use App\Classes\PhotoHandlingClass;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
+
+// use App\Classes\PhotoHandlingClass;
 
 class QuickScanJob implements ShouldQueue
 {

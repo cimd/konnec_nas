@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Jobs\PHoto;
+namespace App\Models\Jobs;
 
 use App\Models\Photo\Exif;
 use App\Models\Photo\Photo;
-use App\Services\Photo\ExifTool;
+use App\Models\Services\ExifTool;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

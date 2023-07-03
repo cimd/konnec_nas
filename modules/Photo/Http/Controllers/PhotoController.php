@@ -1,6 +1,5 @@
 <?php
 
-namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\Photo\DeleteOriginalsJob;
@@ -82,7 +81,7 @@ class PhotoController extends Controller
     public function rename(Request $request, Photo $photo)
     {
         RenamePhotoJob::dispatch($photo, $request->path, $request->filename);
-        UpdateExifModelJob::dispatch($photo);
+        \App\Http\Controllers\API\Photo\UpdateExifModelJob::dispatch($photo);
 
         $photo = Photo::find($photo->id);
 
@@ -94,7 +93,7 @@ class PhotoController extends Controller
     public function exif(Request $request, Photo $photo)
     {
         EditExifTagsJob::dispatch($photo, $request);
-        UpdateExifModelJob::dispatch($photo);
+        \App\Http\Controllers\API\Photo\UpdateExifModelJob::dispatch($photo);
         // DeleteOriginalsJob::dispatch();
         $photo = Photo::find($photo->id);
 

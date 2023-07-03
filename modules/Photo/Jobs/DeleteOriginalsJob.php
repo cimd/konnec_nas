@@ -1,33 +1,28 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Models\Jobs;
 
-use App\Models\Photo;
 use App\Services\ExifTool;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class EditExifTagsJob implements ShouldQueue
+class DeleteOriginalsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $photo;
-
-    protected $request;
+    protected $path;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Photo $photo, Request $request)
+    public function __construct($path)
     {
-        $this->photo = $photo;
-        $this->request = $request;
+        $this->path = $path;
     }
 
     /**
@@ -35,6 +30,6 @@ class EditExifTagsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $result = ExifTool::photo($this->photo)->edit($request->all())->save();
+        ExifTool::deleteOriginals($path);
     }
 }

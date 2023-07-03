@@ -2,7 +2,7 @@
 
 namespace App\Packages\Photos\Commands;
 
-use App\Jobs\DeleteThumbnailsJob;
+use App\Models\Jobs\DeleteThumbnailsJob;
 use Illuminate\Console\Command;
 
 class DeleteThumbnails extends Command

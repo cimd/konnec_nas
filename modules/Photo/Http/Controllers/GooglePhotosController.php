@@ -1,6 +1,5 @@
 <?php
 
-namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -39,9 +38,9 @@ class GooglePhotosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(\App\Http\Controllers\API\Photo\Photo $photo)
     {
-        $photo = Photo::filter($request)->with('exif')->orderBy('date_taken', 'Desc')->paginate(1);
+        $photo = \App\Http\Controllers\API\Photo\Photo::filter($request)->with('exif')->orderBy('date_taken', 'Desc')->paginate(1);
 
         return $photo;
     }
@@ -51,7 +50,7 @@ class GooglePhotosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, \App\Http\Controllers\API\Photo\Photo $photo)
     {
         $photo->fill($request->all());
         $photo->save();
@@ -66,7 +65,7 @@ class GooglePhotosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(\App\Http\Controllers\API\Photo\Photo $photo)
     {
         $photo->delete();
 
@@ -75,24 +74,24 @@ class GooglePhotosController extends Controller
         ];
     }
 
-    public function rename(Request $request, Photo $photo)
+    public function rename(Request $request, \App\Http\Controllers\API\Photo\Photo $photo)
     {
-        RenamePhotoJob::dispatch($photo, $request->path, $request->filename);
-        UpdateExifModelJob::dispatch($photo);
+        \App\Http\Controllers\API\Photo\RenamePhotoJob::dispatch($photo, $request->path, $request->filename);
+        \App\Http\Controllers\API\Photo\UpdateExifModelJob::dispatch($photo);
 
-        $photo = Photo::find($photo->id);
+        $photo = \App\Http\Controllers\API\Photo\Photo::find($photo->id);
 
         return [
             'data' => $photo->toArray(),
         ];
     }
 
-    public function exif(Request $request, Photo $photo)
+    public function exif(Request $request, \App\Http\Controllers\API\Photo\Photo $photo)
     {
-        EditExifTagsJob::dispatch($photo, $request);
-        UpdateExifModelJob::dispatch($photo);
+        \App\Http\Controllers\API\Photo\EditExifTagsJob::dispatch($photo, $request);
+        \App\Http\Controllers\API\Photo\UpdateExifModelJob::dispatch($photo);
         // DeleteOriginalsJob::dispatch();
-        $photo = Photo::find($photo->id);
+        $photo = \App\Http\Controllers\API\Photo\Photo::find($photo->id);
 
         return [
             'data' => $photo->toArray(),

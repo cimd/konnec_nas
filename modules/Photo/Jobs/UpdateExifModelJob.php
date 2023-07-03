@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Models\Jobs;
 
-use App\Models\Photo;
+use App\Jobs\Exif;
 use App\Services\ExifTool;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

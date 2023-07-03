@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Models\Jobs;
 
 use App\Models\Path;
 use Illuminate\Bus\Queueable;
@@ -9,8 +9,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
-// use App\Models\Photo;
 use Illuminate\Support\Facades\Storage;
+
+// use App\Models\Photo;
 
 // use App\Classes\PhotoHandlingClass;
 // use App\Services\PhotoHandler;

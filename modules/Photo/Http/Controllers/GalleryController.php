@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Photo\GalleryCollection;
 use App\Models\Photo\Photo;
 use Illuminate\Http\Request;
+use Resources\GalleryCollection;
 
 class GalleryController extends Controller
 {

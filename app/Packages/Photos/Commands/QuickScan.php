@@ -2,7 +2,7 @@
 
 namespace App\Packages\Photos\Commands;
 
-use App\Jobs\Photo\QuickScanJob;
+use App\Models\Jobs\QuickScanJob;
 use Illuminate\Console\Command;
 
 class QuickScan extends Command

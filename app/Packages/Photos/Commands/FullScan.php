@@ -2,7 +2,7 @@
 
 namespace App\Packages\Photos\Commands;
 
-use App\Jobs\Photo\FullScanJob;
+use App\Models\Jobs\FullScanJob;
 use Illuminate\Console\Command;
 
 class FullScan extends Command

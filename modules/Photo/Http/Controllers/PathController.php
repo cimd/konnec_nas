@@ -1,6 +1,5 @@
 <?php
 
-namespace App\Http\Controllers\API\Photo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Path;

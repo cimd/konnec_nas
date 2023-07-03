@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\API;
 
 // use App\Mail\ResetPasswordMail;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\User;
-use Auth;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-// use App\Role;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+// use App\Role;
 
 // use Illuminate\Support\Carbon;
 // use Illuminate\Support\Facades\Cache;
@@ -117,7 +116,7 @@ class UserController extends Controller
             ->insert([
                 'email' => $user->email,
                 'token' => $token,
-                'created_at' => Carbon::now(),
+                'created_at' => \App\Http\Controllers\API\Carbon::now(),
             ]);
         $user->spsResetPassword($user->email, $token);
 
