@@ -2,6 +2,7 @@
 
 namespace App\Models\Jobs;
 
+use App\Models\Auth\User;
 use App\Models\Photo\Path;
 use App\Models\Photo\Photo;
 use App\Models\Services\PhotoHandler;
@@ -19,27 +20,21 @@ class QuickScanJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $paths;
+    private array $paths;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(
+        private User $user
+    )
     {
         $this->getPaths();
     }
 
-    public function getPaths()
+    public function getPaths(): void
     {
         $this->paths = Path::orderBy('path')->get();
         // var_dump($this->paths);
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
         $scanTime = Carbon::now();
@@ -57,13 +52,13 @@ class QuickScanJob implements ShouldQueue
         $this->deletePhotosNotFound($scanTime);
     }
 
-    private function readFile($file, $scanTime)
+    private function readFile($file, $scanTime): void
     {
         $filePath = Storage::disk('photos')->path($file);
         PhotoHandler::path($filePath)->import($scanTime)->createThumbnails();
     }
 
-    private function deletePhotosNotFound($scan_time)
+    private function deletePhotosNotFound($scan_time): void
     {
         $notFound = Photo::where('last_scan', '!=', $scan_time)->get();
         foreach ($notFound as $photo) {
