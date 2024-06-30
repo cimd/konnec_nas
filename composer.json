@@ -1,6 +1,13 @@
 {
     "name": "nas/konnec",
     "type": "project",
+    "authors": [
+        {
+            "name": "Christian D'Aquino",
+            "email": "christian.daquino@gmail.com",
+            "role": "Developer/Product Manager"
+        }
+    ],
     "description": "Konnec NAS",
     "keywords": [
         "nas",
@@ -8,43 +15,47 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
         "cmixin/enhanced-period": "^1.2",
-        "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.5",
         "http-interop/http-factory-guzzle": "^1.2",
-        "intervention/image": "^2.7",
-        "konnec/vue-eloquent-api": "^0.3.0",
+        "intervention/image-laravel": "^1.2",
+        "konnec/vue-eloquent-api": "^1.2",
         "krizalys/onedrive-php-sdk": "^3.1",
-        "laravel/framework": "^10.12",
-        "laravel/helpers": "^1.6",
+        "laravel/framework": "^11.00",
+        "laravel/helpers": "^1.7",
         "laravel/horizon": "^5.14",
-        "laravel/octane": "^1.4",
-        "laravel/sanctum": "^3.2",
-        "laravel/scout": "^9.8",
+        "laravel/octane": "^2.3",
+        "laravel/sanctum": "^4.0",
+        "laravel/scout": "^10.0",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
-        "meilisearch/meilisearch-php": "^1.0",
+        "meilisearch/meilisearch-php": "^1.8",
         "pbmedia/laravel-ffmpeg": "^8.3",
         "pusher/pusher-php-server": "^7.2",
-        "sammyjo20/saloon": "^2.0",
+        "saloonphp/laravel-http-sender": "^3.0",
+        "saloonphp/laravel-plugin": "^3.5",
+        "saloonphp/rate-limit-plugin": "^2.0",
+        "saloonphp/saloon": "^3.8",
+        "saloonphp/xml-wrangler": "^1.2",
         "s-ichikawa/laravel-sendgrid-driver": "^4.0",
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/microsoft": "^4.1",
-        "spatie/laravel-backup": "^8.1"
+        "spatie/laravel-backup": "^8.1",
+        "spatie/laravel-data": "^4.6"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.13",
-        "fakerphp/faker": "^1.20",
-        "laravel/pint": "^1.5",
-        "laravel/sail": "^1.20",
-        "laravel/telescope": "^4.13",
-        "mockery/mockery": "^1.5",
-        "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.4",
+        "barryvdh/laravel-ide-helper": "^3.0.0",
+        "fakerphp/faker": "^1.23.1",
+        "laravel/pint": "^1.15.2",
+        "laravel/telescope": "^5.0",
+        "mockery/mockery": "^1.6.12",
+        "nunomaduro/collision": "^8.1",
+        "larastan/larastan": "^2.9",
         "pestphp/pest-plugin-faker": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "spatie/laravel-ignition": "^2.0"
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "pestphp/pest-plugin-type-coverage": "^2.8",
+        "spatie/laravel-ignition": "^2.7"
     },
     "autoload": {
         "files": [
