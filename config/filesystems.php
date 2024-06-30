@@ -44,9 +44,16 @@ return [
             'throw' => false,
         ],
 
+        'filesystem' => [
+            'driver' => 'local',
+            'root' => storage_path('filesystem'),
+            'url' => env('APP_URL') . '/filesystem',
+            'visibility' => 'public',
+        ],
+
         'photos' => [
             'driver' => 'local',
-            'root' => storage_path('app/photos'),
+            'root' => storage_path('photos'),
             'url' => env('APP_URL').'/photos',
             'visibility' => 'public',
         ],
@@ -77,9 +84,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
-
-        public_path('photos') => storage_path('app/photos'),
+        public_path('photos') => storage_path('photos'),
     ],
 
 ];
