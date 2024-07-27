@@ -1,0 +1,12 @@
+services:
+  plex:
+    image: plexinc/pms-docker
+    container_name: plex
+    network_mode: host
+    environment:
+      - TZ=Australia/Perth
+    volumes:
+      - /srv/docker/plex/database:/config
+      - /srv/docker/plex/transcode:/transcode
+      - /mnt/volume0/media:/data
+    restart: unless-stopped
