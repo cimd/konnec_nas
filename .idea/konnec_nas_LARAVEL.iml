@@ -218,6 +218,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php83" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tomasvotruba/type-coverage" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/veewee/xml" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/photos" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
